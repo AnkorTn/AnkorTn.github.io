@@ -304,11 +304,25 @@
           <ul type="1">
             <li><b>Training Set</b>. <span style="font-size: 95%;"></li>
             <ul type="1">
-              <li> <b>Deconstructing annotations</b>: BACON assists downstream models in understanding complex texts by decomposing the annotations of VLMs into basic elements and then combining them according to a specific structure.
-              <li> <b>BACON-Captioner</b>: We opt to fine-tune a 13B LLaVA model on the BACON dataset to serve as a specialized captioner.</span></li>
+              <li> <b>Graph Construction</b>: Graph construction method was employed to collect 110k BACON-image pairs. </li>
+              <li> <b>Re-annotation Process</b>: We engage in a thorough manual re-annotation process to eliminate ambiguities and incorrectness and get a refined dataset of 100k high-quality image-BACON pairs.</li>
             </ul>  
             <li><b>Test Benchmark</b>. <span style="font-size: 95%;">
-              In image representation, spatial information is crucial. BACON ensures precise identification while maintaining localization accuracy.
+              A benchmark to offer open-vocabulary capabilities, detailed object attributes, and a comprehensive overall description</span></li>
+              <centering>
+                <div style="text-align: center;">
+                  <img id="teaser" width="100%" src="static/images/test_pipeline.png">     
+                </div>
+                <b>A detailed overview of the method used to collect the BACON benchmark</b>, segmented into five distinct steps:
+                <ul type="1">
+                  <li>The SAM model segments all components within the image.</li>
+                  <li>VLMs identify the names of objects in the masked image obtained from the first step.</li>
+                  <li>Using the names identified in the second step, VLMs annotate each object in detail.</li>
+                  <li>VLMs generate an overall description of the image based on the list of objects derived from the above steps. </li>
+                  <li>Images created by randomly pairing two masked images from the first step are fed to VLMs to identify the relationship between the combined segments.</li>
+                </ul>
+                It is important to note that human annotation is required to correct and verify the outputs from steps two through five.
+              </centering>
           </ul>  
         </p>
       </div>
