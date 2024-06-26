@@ -314,7 +314,7 @@
               <li> <b>Re-annotation Process</b>: We engage in a thorough manual re-annotation process to eliminate ambiguities and incorrectness and get a refined dataset of 100k high-quality image-BACON pairs.</li>
             </ul>  
             <li><b>Test Benchmark</b>. <span style="font-size: 95%;">
-              A benchmark to offer open-vocabulary capabilities, detailed object attributes, and a comprehensive overall description</span></li>
+              A benchmark to offer open-vocabulary capabilities, detailed object attributes, and a comprehensive overall description. Finally, we annotated a test benchmark containing around 4k images, 40k objects, and 200k relationships.</span></li>
               <centering>
                 <div style="text-align: center;">
                   <img id="teaser" width="100%" src="static/images/test_pipeline.png">     
@@ -337,6 +337,77 @@
 </section>
 
 
+
+<section class="hero is-small">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-six-fifths">
+      <h2 class="title is-3"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/3310/PNG/512/math_book_school_study_icon_209279.png"> Experiments</h2>
+    </div>
+  </div>
+<div class="container is-max-desktop">
+
+
+  <!-- Grounedtext2img. -->
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <h2 class="title is-4"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/2178/PNG/512/household_chores_task_washing_machine_clothes_appliance_icon_133381.png"> Downstream tasks benefiting from BACON</h2>
+      <centering>
+        <div style="text-align: center;">
+          <img id="teaser" width="100%" src="static/images/first_image_2.png">     
+        </div>
+        <b>Schematic diagram of multiple exemplary downstream tasks can benefit from  BACON</b>. Specifically, BACON can:
+        <ul type="1">
+          <li>enable VLMs to carry out the point question answering task previously beyond their scope;</li>
+          <li>assist text-to-image generative models such as SDXL in creating intricate images with higher precision as demanded by prompts;</li>
+          <li>execute open-vocabulary scene graph generation tasks that were not feasible for other VLMs.</li>
+        </ul>
+      </centering>
+    </div>
+  </div>
+
+  <!-- Grounedtext2img. -->
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <h2 class="title is-4"> <img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1633/PNG/512/52757directhit_109431.png">Tasks directly using BACON</h2>
+      
+      <div>
+        <a href="https://plotly.com/~lichunyuan24/1/?share_key=v4opE3TJpxqQ08RYsDD4iv" target="_blank" title="Plot 1" style="display: block; text-align: center;"><img id="painting_icon" width="65%" src="images/bar_llava_gpt4_scienceqa.png"></a>
+        <script data-plotly="lichunyuan24:1" sharekey-plotly="v4opE3TJpxqQ08RYsDD4iv" src="https://plotly.com/embed.js" async></script>
+    </div>
+        <p style="font-family:Times New Roman"><b>LLaVA alones achieve 90.92%. We use the text-only GPT-4 as the judge, to predict the final answer based on its own previous answers and the LLaVA answers. This "GPT-4 as judge" scheme yields a new SOTA 92.53%.</b>
+              
+    </div>
+  </div>
+
+  <!-- Grounedtext2img. -->
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <h2 class="title is-4"> <img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/651/PNG/512/Icon_Business_Set_00005_A_icon-icons.com_59846.png">Additional capabilities of captioner</h2>
+      
+      <div>
+        <a href="https://plotly.com/~lichunyuan24/1/?share_key=v4opE3TJpxqQ08RYsDD4iv" target="_blank" title="Plot 1" style="display: block; text-align: center;"><img id="painting_icon" width="65%" src="images/bar_llava_gpt4_scienceqa.png"></a>
+        <script data-plotly="lichunyuan24:1" sharekey-plotly="v4opE3TJpxqQ08RYsDD4iv" src="https://plotly.com/embed.js" async></script>
+    </div>
+        <p style="font-family:Times New Roman"><b>LLaVA alones achieve 90.92%. We use the text-only GPT-4 as the judge, to predict the final answer based on its own previous answers and the LLaVA answers. This "GPT-4 as judge" scheme yields a new SOTA 92.53%.</b>
+              
+    </div>
+  </div>
+
+
+  <!-- Grounedtext2img. -->
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <h2 class="title is-4"> <img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1146/PNG/512/1486485582-311arrow-film-movie-play-player-start-video_81177.png">BACON on video captioning</h2>
+      
+      <div>
+        <a href="https://plotly.com/~lichunyuan24/1/?share_key=v4opE3TJpxqQ08RYsDD4iv" target="_blank" title="Plot 1" style="display: block; text-align: center;"><img id="painting_icon" width="65%" src="images/bar_llava_gpt4_scienceqa.png"></a>
+        <script data-plotly="lichunyuan24:1" sharekey-plotly="v4opE3TJpxqQ08RYsDD4iv" src="https://plotly.com/embed.js" async></script>
+    </div>
+        <p style="font-family:Times New Roman"><b>LLaVA alones achieve 90.92%. We use the text-only GPT-4 as the judge, to predict the final answer based on its own previous answers and the LLaVA answers. This "GPT-4 as judge" scheme yields a new SOTA 92.53%.</b>
+              
+    </div>
+  </div>
+</section>
 
 
 
@@ -502,7 +573,7 @@
 
           <p>
             This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+             <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
 
