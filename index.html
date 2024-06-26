@@ -269,7 +269,13 @@
             <div style="text-align: center;">
               <img id="teaser" width="70%" src="static/images/grounding_dino.png">     
             </div>
-            <b>Detailed method</b> for graph grounding. The method contains four steps: 1) Extracting BACON from images using GPT-4V or BACON-Captioner; 2) Getting candidate regions using Grounding DINO given the name of the object; 3) Using LLaVA to discard blatant incorrect regions; 4) Select the region whose image feature matches the text feature of object description the most by CLIP.
+            <b>Detailed method</b> for graph grounding. The method contains four steps: 
+            <ul type="1">
+              <li>Extracting BACON from images using GPT-4V or BACON-Captioner;</li>
+              <li>Getting candidate regions using Grounding DINO given the name of the object;</li>
+              <li>Using LLaVA to discard blatant incorrect regions;</li>
+              <li>Select the region whose image feature matches the text feature of object description the most by CLIP.</li>
+            </ul>
           </centering>
         </p>
       </div>
