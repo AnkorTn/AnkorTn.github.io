@@ -228,13 +228,77 @@
           <p>
             This paper presents <strong>Ba</strong>g-of-<strong>Con</strong>cept Graph (<strong>BACON</strong>) to gift models with limited linguistic abilities to taste the privilege of Vision Language Models (VLMs) and reduce hallucinations in the downstream tasks such as detection, visual question answering (VQA), and image generation. Since the visual scenes in physical worlds are structured with complex relations between objects, BACON breaks down annotations into basic minimum elements and presents them in a graph structure. Element-wise style enables easy understanding, and structural composition liberates difficult locating. Careful prompt design births the BACON captions with the help of publicly available VLMs and segmentation methods. In this way, we gather a dataset with 100K annotated images, which endow VLMs with remarkable capabilities, such as accurately generating BACON, transforming prompts into BACON format, envisioning scenarios in the style of BACON, and dynamically modifying elements within BACON through interactive dialogue and more. Wide representative experiments, including detection, VQA, and image generation tasks, tell BACON as a lifeline to achieve previous out-of-reach tasks or excel in their current cutting-edge solutions.
           </p>
-          
+          <!-- <p>
+              Instruction tuning large language models (LLMs) using machine-generated instruction-following data has improved zero-shot capabilities on new tasks in the language domain, but the idea is less explored in the multimodal field.
+              <ol type="1">
+                <li><b>Multimodal Instruct Data</b>. <span style="font-size: 95%;">We present the first attempt to use <a href="https://openai.com/research/gpt-4">language-only GPT-4</a> to generate multimodal language-image instruction-following data. </span></li>
+                <li><b>LLaVA Model</b>. <span style="font-size: 95%;">We introduce <it><b>LLaVA</b> (<b>L</b>arge <b>L</b>anguage-<b>a</b>nd-<b>V</b>ision <b>A</b>ssistant)</it>, an end-to-end trained large multimodal model that connects a vision encoder and LLM for general-purpose visual and language understanding.</li>
+                <li><b>Performance</b>. <span style="font-size: 95%;">Our early experiments show that LLaVA demonstrates impressive multimodel chat abilities, sometimes exhibiting the behaviors of multimodal GPT-4 on unseen images/instructions, and yields a 85.1% relative score compared with GPT-4 on a synthetic multimodal instruction-following dataset.
+                  When fine-tuned on <a href="https://scienceqa.github.io/">Science QA</a>, the synergy of LLaVA and GPT-4  achieves a new state-of-the-art accuracy of 92.53%.</li>
+                <li><b>Open-source</b>. <span style="font-size: 95%;">We make GPT-4 generated visual instruction tuning data, our model and code base publicly available.</li>
+              </ol>  
+           </p> -->
         </div>
       </div>
     </div>
   </div>
 </section>
 <!-- End paper abstract -->
+
+<section class="section">
+  <!-- Results. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-six-fifths">
+      <h2 class="title is-3"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1447/PNG/512/32381bacon_98873.png"> BACON: Bag-of-Concept Graph</h2>
+    </div>
+  </div>
+  <!-- </div> -->
+  <!--/ Results. -->    
+<div class="container is-max-desktop">
+
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <div class="content has-text-justified"> 
+        <p>
+          BACON representation of an image, including overall description, object list, and relationships. BACON deconstructs the image annotations into basic elements, ensuring that even smaller downstream models can fully comprehend them. Subsequently, BACON employs a specific graph structure to amalgamate these elements, ensuring each element appears in a designated spot, allowing smaller downstream models to query and retrieve them easily.
+          <centering>
+            <div style="text-align: center;">
+              <img id="teaser" width="70%" src="static/images/first_image_1.png">     
+            </div>
+          </centering>
+          <p>
+            Given an image <span style="font-family: 'Times New Roman', Times, serif;">I</span>, we aim to induce a structural representation <span style="font-family: 'Times New Roman', Times, serif;">G = (D, O, R, B)</span>, where <span style="font-family: 'Times New Roman', Times, serif;">D</span> is the textual description, <span style="font-family: 'Times New Roman', Times, serif;">O</span> is the list of objects in the image, with <span style="font-family: 'Times New Roman', Times, serif;">R</span> denotes their relationships and <span style="font-family: 'Times New Roman', Times, serif;">B</span> as their bounding box positions. In practice, we optimize the construction of <span style="font-family: 'Times New Roman', Times, serif;">G</span> in two stages:           
+          <ul type="1">
+            <li><b>Graph Construction</b>. <span style="font-size: 95%;">This utilizes VLMs to generate the graph elements <span style="font-family: 'Times New Roman', Times, serif;">(D, O, R)</span> from the image.</span></li>
+            <ul type="1">
+              <li> <b>Deconstructing annotations</b>: BACON assists downstream models in understanding complex texts by decomposing the annotations of VLMs into basic elements and then combining them according to a specific structure.
+              <li> <b>BACON-Captioner</b>: We opt to fine-tune a 13B LLaVA model on the BACON dataset to serve as a specialized captioner.</span></li>
+            </ul>  
+            <li><b>Graph Grounding</b>. <span style="font-size: 95%;">
+              In image representation, spatial information is crucial. BACON ensures precise identification while maintaining localization accuracy.
+          </ul>  
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- Image carousel -->
