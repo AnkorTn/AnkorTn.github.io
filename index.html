@@ -130,17 +130,6 @@
                       </a>
                     </span>
 
-                    <!-- Supplementary PDF link -->
-                    <span class="link-block">
-                      <a href="static/pdfs/sample.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
-
                   <span class="link-block">
                     <a href="PleaseEnterHere" target="_blank"
                       class="external-link button is-normal is-rounded is-dark">
@@ -245,7 +234,7 @@
 </section>
 <!-- End paper abstract -->
 
-<section class="section">
+<section class="hero is-small">
   <!-- Results. -->
   <div class="columns is-centered has-text-centered">
     <div class="column is-six-fifths">
@@ -255,7 +244,6 @@
   <!-- </div> -->
   <!--/ Results. -->    
 <div class="container is-max-desktop">
-
   <div class="columns is-centered">
     <div class="column is-full-width">
       <div class="content has-text-justified"> 
@@ -277,6 +265,12 @@
             <li><b>Graph Grounding</b>. <span style="font-size: 95%;">
               In image representation, spatial information is crucial. BACON ensures precise identification while maintaining localization accuracy.
           </ul>  
+          <centering>
+            <div style="text-align: center;">
+              <img id="teaser" width="70%" src="static/images/grounding_dino.png">     
+            </div>
+            <b>Detailed method</b> for graph grounding. The method contains four steps: 1) Extracting BACON from images using GPT-4V or BACON-Captioner; 2) Getting candidate regions using Grounding DINO given the name of the object; 3) Using LLaVA to discard blatant incorrect regions; 4) Select the region whose image feature matches the text feature of object description the most by CLIP.
+          </centering>
         </p>
       </div>
     </div>
@@ -285,6 +279,42 @@
 
 
 
+
+
+<section class="hero is-small is-light">
+  <!-- Results. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-six-fifths">
+      <h2 class="title is-3"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/3276/PNG/512/egg_bacon_dish_plate_food_icon_207982.png"> BACON Dataset</h2>
+    </div>
+  </div>
+  <!-- </div> -->
+  <!--/ Results. -->    
+<div class="container is-max-desktop">
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <div class="content has-text-justified"> 
+        <p>
+          BACON dataset is composed of two parts, the training set and the test benchmark, which share different collection methods. 
+          <!-- <centering>
+            <div style="text-align: center;">
+              <img id="teaser" width="70%" src="static/images/first_image_1.png">     
+            </div>
+          </centering> -->    
+          <ul type="1">
+            <li><b>Training Set</b>. <span style="font-size: 95%;"></li>
+            <ul type="1">
+              <li> <b>Deconstructing annotations</b>: BACON assists downstream models in understanding complex texts by decomposing the annotations of VLMs into basic elements and then combining them according to a specific structure.
+              <li> <b>BACON-Captioner</b>: We opt to fine-tune a 13B LLaVA model on the BACON dataset to serve as a specialized captioner.</span></li>
+            </ul>  
+            <li><b>Test Benchmark</b>. <span style="font-size: 95%;">
+              In image representation, spatial information is crucial. BACON ensures precise identification while maintaining localization accuracy.
+          </ul>  
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
