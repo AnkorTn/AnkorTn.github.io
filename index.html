@@ -429,122 +429,72 @@
 
 <!-- Image carousel -->
 <section class="hero is-small">
-<style>
-table.GeneratedTable {
-  width: 100%;
-  background-color: #ffffff;
-  border-collapse: collapse;
-  border-width: 2px;
-  border-color: #c1c4c5;
-  border-style: solid;
-  color: #000000;
-}
-
-table.GeneratedTable td, table.GeneratedTable th {
-  border-width: 2px;
-  border-color: #9b9d9e;
-  border-style: solid;
-  padding: 3px;
-}
-
-table.GeneratedTable thead {
-  background-color: #6691ee;
-}
-</style>
   <div class="hero-body">
-    <div class="container">
+    <div class="container is-max-desktop">
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
+        <img style="width: 50%;" src="static/images/grounding_dino_ablation.png" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
-          First image description.
+          <b>Ablation study</b> of method in graph grounding, exploring the improvement of introducing CLIP and LLaVA, where the experiment is conducted on BACON benchmark.
         </h2>
       </div>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
+        <img src="static/images/pointing task.png" style="width: 100%;" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
-          Second image description.
+          <b>Quantitative comparison</b> on (Left) PointQA and (Right) PointingQA between BACON and baselines.
         </h2>
       </div>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
+        <img src="static/images/precision_recall.png" style="width: 100%;" alt="MY ALT TEXT"/>
         <h2 class="subtitle has-text-centered">
-         Third image description.
+          <b>Win rate of pairwise comparisons</b> between BACON-Captioner and other VLM-based captioners.
        </h2>
      </div>
      <div class="item">
       <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
+      <img src="static/images/comparison.png" style="width: 100%;" alt="MY ALT TEXT"/>
       <h2 class="subtitle has-text-centered">
-        Fourth image description.
+        <b>Comparison of open-vocabulary object detection</b> among BACON, Grounding DINO, openvocabulary object detection models, and grounding caption models on BACON benchmark. GD represents Grounding DINO. We have calculated error bars for models that exhibit randomness.
       </h2>
     </div>
     <div class="item">
-      <!-- Your table here -->
-      <table class="GeneratedTable">
-        <thead>
-          <tr>
-            <th>Method</th>
-            <th>AP50 ($\uparrow$)</th>
-            <th>Recall ($\uparrow$)</th>
-            <th>mIOU ($\uparrow$)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>OV-DQUO</td>
-            <td>14.4$\%$</td>
-            <td>17.1$\%$</td>
-            <td>75.3$\%$</td>
-          </tr>
-          <tr>
-            <td>DE-VIT</td>
-            <td>38.2$\%$</td>
-            <td>32.5$\%$</td>
-            <td>76.3$\%$</td>
-          </tr>
-          <tr>
-            <td>GD</td>
-            <td>35.0$\pm$0.5$\%$</td>
-            <td>20.5$\pm$0.2$\%$</td>
-            <td>75.9$\pm$0.1$\%$</td>
-          </tr>
-          <tr>
-            <td>Next-Chat</td>
-            <td>30.1$\pm$2.4$\%$</td>
-            <td>8.0$\pm$0.1$\%$</td>
-            <td>67.2$\pm$0.0$\%$</td>
-          </tr>
-          <tr>
-            <td>Kosmos-2</td>
-            <td>35.8$\pm$4.4$\%$</td>
-            <td>13.2$\pm$2.2$\%$</td>
-            <td>76.1$\pm$0.4$\%$</td>
-          </tr>
-          <tr>
-            <td>GLaMM</td>
-            <td>36.49$\%$</td>
-            <td>20.79$\%$</td>
-            <td>80.06$\%$</td>
-          </tr>
-          <tr>
-            <td>\methodabbr</td>
-            <td>$\bf38.9\pm0.9\%$</td>
-            <td>$\bf36.2\pm0.7\%$</td>
-            <td>$\bf80.6\pm0.4\%$</td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- Your image here -->
+      <img src="static/images/VG.png" style="width: 100%;" alt="MY ALT TEXT"/>
       <h2 class="subtitle has-text-centered">
-        Fourth image description.
+        <b>Comparison on open-vocabulary scene graph generation task</b> between BACON and multiple baselines on VG dataset and BACON benchmark. The number of correct predictions is used as the metric.
       </h2>
     </div>
-    
-
-
+    <div class="item">
+      <!-- Your image here -->
+      <img src="static/images/VQA.png" style="width: 100%;" alt="MY ALT TEXT"/>
+      <h2 class="subtitle has-text-centered">
+        <b>Quantitative comparison of VQA task</b> between BACON and multiple VLM-based baselines, where the input image of the QA model is replaced by its caption to evaluate the performance of the captioner. The metric is the accuracy of answering questions.
+      </h2>
+    </div>
+    <div class="item">
+      <!-- Your image here -->
+      <img src="static/images/accuracy.png" style="width: 100%;" alt="MY ALT TEXT"/>
+      <h2 class="subtitle has-text-centered">
+        <b>Accuracy in depicting objects (Ao) and relationships (Ar)</b>  in images generated from text prompts, as evaluated by human. We compare SDXL enhanced by BACON with SDXL and DALL-E 3.
+      </h2>
+    </div>
+    <div class="item">
+      <!-- Your image here -->
+      <img src="static/images/manual.png" style="width: 100%;" alt="MY ALT TEXT"/>
+      <h2 class="subtitle has-text-centered">
+        <b>Precision and recall score calculated by manual annotation</b> between BACON-Captioner and other VLM-based captioners.
+      </h2>
+    </div>
+    <div class="item">
+      <!-- Your image here -->
+      <img src="static/images/plantask.png" style="width: 100%;" alt="MY ALT TEXT"/>
+      <h2 class="subtitle has-text-centered">
+        <b>Comparison of plan task</b> between BACON and LayoutGPT on both MSCOCO and BACON benchmark.
+      </h2>
+    </div>
   </div>
 </div>
 </div>
