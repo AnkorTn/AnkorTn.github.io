@@ -352,11 +352,12 @@
     <div class="column is-full-width">
       <h2 class="title is-4"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/2178/PNG/512/household_chores_task_washing_machine_clothes_appliance_icon_133381.png"> Downstream tasks benefiting from BACON</h2>
       <div class="content has-text-justified"> 
-        The adaptable nature of BACON's structure enhances models' comprehension of complex text and empowers them to undertake tasks previously beyond their reach. We conduct evaluations across five downstream tasks, including object detection, point question answering (PointQA), Pointing question answering (PointingQA), scene graph generation (SGG), and image generation.
+        The adaptable nature of BACON's structure enhances models' comprehension of complex text and empowers them to undertake tasks previously beyond their reach. We conduct evaluations across five downstream tasks, including object detection, point question answering (PointQA), Pointing question answering (PointingQA), scene graph generation (SGG), and image generation.<br><br>
       <centering>
         <div style="text-align: center;">
           <img id="teaser" width="100%" src="static/images/first_image_2.png">     
         </div>
+        <br>
         <b>Schematic diagram of multiple exemplary downstream tasks can benefit from  BACON</b>. <br>Specifically, BACON can:
         <ul type="1">
           <li>enable VLMs to carry out the point question answering task previously beyond their scope;</li>
@@ -364,11 +365,12 @@
           <li>execute open-vocabulary scene graph generation tasks that were not feasible for other VLMs.</li>
         </ul>
       </centering>
-
+      <br><br>
       <centering>
         <div style="text-align: center;">
           <img id="teaser" width="100%" src="static/images/image_generation.png">     
         </div>
+        <br>
         This is the <b>comparative examples of image generation</b> reveal that BACON enhances advanced generative models like SDXL. SDXL and DALL-E 3 struggle with complex text and fail to produce corresponding images. Remarkably, BACON not only elevates SDXL's image quality but also markedly boosts its comprehension of intricate instructions, enabling it to surpass DALL-E 3 in terms of accurately generating images aligning with textual directives.
       </centering>
       </div>
@@ -387,12 +389,14 @@
   <div class="columns is-centered">
     <div class="column is-full-width">
       <h2 class="title is-4"> <img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/651/PNG/512/Icon_Business_Set_00005_A_icon-icons.com_59846.png">Additional capabilities of captioner</h2>
-      Beyond obtaining BACON from images, the trained captioner is also adept at performing additional useful tasks, including interactively editing BACON, transforming ordinary prompts into BACON format, and planning positions of objects in BACON. <br>Here is <b>an example of interactively modifying</b> BACON using BACON-Captioner
+      Beyond obtaining BACON from images, the trained captioner is also adept at performing additional useful tasks, including interactively editing BACON, transforming ordinary prompts into BACON format, and planning positions of objects in BACON. <br><br>
       <centering>
         <div style="text-align: center;">
           <img id="teaser" width="100%" src="static/images/edit.png">     
         </div>
       </centering>
+      <br>
+      This is <b>an example of interactively modifying</b> BACON using BACON-Captioner
     </div>
   </div>
 
@@ -403,32 +407,50 @@
       <h2 class="title is-4"> <img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1146/PNG/512/1486485582-311arrow-film-movie-play-player-start-video_81177.png">BACON on video captioning</h2>
       <div class="content has-text-justified"> 
       While BACON is primarily developed for image data, it can be extended to create structured captions for videos with the help of additional techniques that address the temporal dimension of video content.
+      <br><br>
       <centering>
         <div style="text-align: center;">
           <img id="teaser" width="100%" src="static/images/video_caption_example_result_3.png">     
         </div>
       </centering>
+      <br>
       This is an example of BACON on video captioning, which includes three components: an overall description, an object list, and their relationships, each dynamically evolving over time. With respect to a prior frame, updates are color-coded: new elements in green, removed in red, altered in gold, and persistent ones in black. BACON thus adeptly captures the temporal changes and salient details of each video frame, while its structured nature potentially aids in downstream model comprehension.
     </div>
     </div>
   </div>
+
+  <!-- Grounedtext2img. -->
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <h2 class="title is-4"> <img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/561/PNG/512/seo-performance-marketing-graphic_icon-icons.com_53826.png">Performance</h2>
+    </div>
+  </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- Image carousel -->
 <section class="hero is-small">
+<style>
+table.GeneratedTable {
+  width: 100%;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #c1c4c5;
+  border-style: solid;
+  color: #000000;
+}
+
+table.GeneratedTable td, table.GeneratedTable th {
+  border-width: 2px;
+  border-color: #9b9d9e;
+  border-style: solid;
+  padding: 3px;
+}
+
+table.GeneratedTable thead {
+  background-color: #6691ee;
+}
+</style>
   <div class="hero-body">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
@@ -460,6 +482,69 @@
         Fourth image description.
       </h2>
     </div>
+    <div class="item">
+      <!-- Your table here -->
+      <table class="GeneratedTable">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>AP50 ($\uparrow$)</th>
+            <th>Recall ($\uparrow$)</th>
+            <th>mIOU ($\uparrow$)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>OV-DQUO</td>
+            <td>14.4$\%$</td>
+            <td>17.1$\%$</td>
+            <td>75.3$\%$</td>
+          </tr>
+          <tr>
+            <td>DE-VIT</td>
+            <td>38.2$\%$</td>
+            <td>32.5$\%$</td>
+            <td>76.3$\%$</td>
+          </tr>
+          <tr>
+            <td>GD</td>
+            <td>35.0$\pm$0.5$\%$</td>
+            <td>20.5$\pm$0.2$\%$</td>
+            <td>75.9$\pm$0.1$\%$</td>
+          </tr>
+          <tr>
+            <td>Next-Chat</td>
+            <td>30.1$\pm$2.4$\%$</td>
+            <td>8.0$\pm$0.1$\%$</td>
+            <td>67.2$\pm$0.0$\%$</td>
+          </tr>
+          <tr>
+            <td>Kosmos-2</td>
+            <td>35.8$\pm$4.4$\%$</td>
+            <td>13.2$\pm$2.2$\%$</td>
+            <td>76.1$\pm$0.4$\%$</td>
+          </tr>
+          <tr>
+            <td>GLaMM</td>
+            <td>36.49$\%$</td>
+            <td>20.79$\%$</td>
+            <td>80.06$\%$</td>
+          </tr>
+          <tr>
+            <td>\methodabbr</td>
+            <td>$\bf38.9\pm0.9\%$</td>
+            <td>$\bf36.2\pm0.7\%$</td>
+            <td>$\bf80.6\pm0.4\%$</td>
+          </tr>
+        </tbody>
+      </table>
+      <h2 class="subtitle has-text-centered">
+        Fourth image description.
+      </h2>
+    </div>
+    
+
+
   </div>
 </div>
 </div>
