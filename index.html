@@ -4,23 +4,23 @@
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="DESCRIPTION META TAG">
-  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
-  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
-  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <meta name="description" content="Supercharge your VLM with Bag-of-Concept Graph to mitigate hallucinations!">
+  <meta property="og:title" content="GitHub"/>
+  <meta property="og:description" content="GitHub is a hosting platform for open source and private software projects, because it only supports Git as the only version library format for hosting, so the name GitHub."/>
+  <meta property="og:url" content="https://ankortn.github.io/"/>
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
   <meta property="og:image" content="static/image/your_banner_image.png" />
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
 
 
-  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
-  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG"> -->
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
-  <meta name="twitter:card" content="summary_large_image">
+  <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image"> -->
   <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="keywords" content="vision language models">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -352,46 +352,47 @@
     <div class="column is-full-width">
       <h2 class="title is-4"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/2178/PNG/512/household_chores_task_washing_machine_clothes_appliance_icon_133381.png"> Downstream tasks benefiting from BACON</h2>
       <div class="content has-text-justified"> 
+        The adaptable nature of BACON's structure enhances models' comprehension of complex text and empowers them to undertake tasks previously beyond their reach. We conduct evaluations across five downstream tasks, including object detection, point question answering (PointQA), Pointing question answering (PointingQA), scene graph generation (SGG), and image generation.
       <centering>
         <div style="text-align: center;">
           <img id="teaser" width="100%" src="static/images/first_image_2.png">     
         </div>
-        <b>Schematic diagram of multiple exemplary downstream tasks can benefit from  BACON</b>. Specifically, BACON can:
+        <b>Schematic diagram of multiple exemplary downstream tasks can benefit from  BACON</b>. <br>Specifically, BACON can:
         <ul type="1">
           <li>enable VLMs to carry out the point question answering task previously beyond their scope;</li>
           <li>assist text-to-image generative models such as SDXL in creating intricate images with higher precision as demanded by prompts;</li>
           <li>execute open-vocabulary scene graph generation tasks that were not feasible for other VLMs.</li>
         </ul>
       </centering>
+
+      <centering>
+        <div style="text-align: center;">
+          <img id="teaser" width="100%" src="static/images/image_generation.png">     
+        </div>
+        This is the <b>comparative examples of image generation</b> reveal that BACON enhances advanced generative models like SDXL. SDXL and DALL-E 3 struggle with complex text and fail to produce corresponding images. Remarkably, BACON not only elevates SDXL's image quality but also markedly boosts its comprehension of intricate instructions, enabling it to surpass DALL-E 3 in terms of accurately generating images aligning with textual directives.
+      </centering>
       </div>
     </div>
   </div>
 
   <!-- Grounedtext2img. -->
-  <div class="columns is-centered">
+  <!-- <div class="columns is-centered">
     <div class="column is-full-width">
       <h2 class="title is-4"> <img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1633/PNG/512/52757directhit_109431.png">Tasks directly using BACON</h2>
-      
-      <div>
-        <a href="https://plotly.com/~lichunyuan24/1/?share_key=v4opE3TJpxqQ08RYsDD4iv" target="_blank" title="Plot 1" style="display: block; text-align: center;"><img id="painting_icon" width="65%" src="images/bar_llava_gpt4_scienceqa.png"></a>
-        <script data-plotly="lichunyuan24:1" sharekey-plotly="v4opE3TJpxqQ08RYsDD4iv" src="https://plotly.com/embed.js" async></script>
+      For completeness, we discuss downstream tasks where BACON can be used directly without special operations.
     </div>
-        <p style="font-family:Times New Roman"><b>LLaVA alones achieve 90.92%. We use the text-only GPT-4 as the judge, to predict the final answer based on its own previous answers and the LLaVA answers. This "GPT-4 as judge" scheme yields a new SOTA 92.53%.</b>
-              
-    </div>
-  </div>
+  </div> -->
 
   <!-- Grounedtext2img. -->
   <div class="columns is-centered">
     <div class="column is-full-width">
       <h2 class="title is-4"> <img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/651/PNG/512/Icon_Business_Set_00005_A_icon-icons.com_59846.png">Additional capabilities of captioner</h2>
-      
-      <div>
-        <a href="https://plotly.com/~lichunyuan24/1/?share_key=v4opE3TJpxqQ08RYsDD4iv" target="_blank" title="Plot 1" style="display: block; text-align: center;"><img id="painting_icon" width="65%" src="images/bar_llava_gpt4_scienceqa.png"></a>
-        <script data-plotly="lichunyuan24:1" sharekey-plotly="v4opE3TJpxqQ08RYsDD4iv" src="https://plotly.com/embed.js" async></script>
-    </div>
-        <p style="font-family:Times New Roman"><b>LLaVA alones achieve 90.92%. We use the text-only GPT-4 as the judge, to predict the final answer based on its own previous answers and the LLaVA answers. This "GPT-4 as judge" scheme yields a new SOTA 92.53%.</b>
-              
+      Beyond obtaining BACON from images, the trained captioner is also adept at performing additional useful tasks, including interactively editing BACON, transforming ordinary prompts into BACON format, and planning positions of objects in BACON. <br>Here is <b>an example of interactively modifying</b> BACON using BACON-Captioner
+      <centering>
+        <div style="text-align: center;">
+          <img id="teaser" width="100%" src="static/images/edit.png">     
+        </div>
+      </centering>
     </div>
   </div>
 
@@ -400,13 +401,15 @@
   <div class="columns is-centered">
     <div class="column is-full-width">
       <h2 class="title is-4"> <img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1146/PNG/512/1486485582-311arrow-film-movie-play-player-start-video_81177.png">BACON on video captioning</h2>
-      
-      <div>
-        <a href="https://plotly.com/~lichunyuan24/1/?share_key=v4opE3TJpxqQ08RYsDD4iv" target="_blank" title="Plot 1" style="display: block; text-align: center;"><img id="painting_icon" width="65%" src="images/bar_llava_gpt4_scienceqa.png"></a>
-        <script data-plotly="lichunyuan24:1" sharekey-plotly="v4opE3TJpxqQ08RYsDD4iv" src="https://plotly.com/embed.js" async></script>
+      <div class="content has-text-justified"> 
+      While BACON is primarily developed for image data, it can be extended to create structured captions for videos with the help of additional techniques that address the temporal dimension of video content.
+      <centering>
+        <div style="text-align: center;">
+          <img id="teaser" width="100%" src="static/images/video_caption_example_result_3.png">     
+        </div>
+      </centering>
+      This is an example of BACON on video captioning, which includes three components: an overall description, an object list, and their relationships, each dynamically evolving over time. With respect to a prior frame, updates are color-coded: new elements in green, removed in red, altered in gold, and persistent ones in black. BACON thus adeptly captures the temporal changes and salient details of each video frame, while its structured nature potentially aids in downstream model comprehension.
     </div>
-        <p style="font-family:Times New Roman"><b>LLaVA alones achieve 90.92%. We use the text-only GPT-4 as the judge, to predict the final answer based on its own previous answers and the LLaVA answers. This "GPT-4 as judge" scheme yields a new SOTA 92.53%.</b>
-              
     </div>
   </div>
 </section>
