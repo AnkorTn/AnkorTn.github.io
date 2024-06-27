@@ -126,7 +126,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 50vh; /* 使每个项目占满整个视口高度 */
+  height: 100vh; /* 使每个项目占满整个视口高度 */
   text-align: center; /* 确保文本居中 */
 }
 
