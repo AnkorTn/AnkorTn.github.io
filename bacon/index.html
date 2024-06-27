@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="Supercharge your VLM with Bag-of-Concept Graph to mitigate hallucinations!">
+  <meta property="og:title" content="GitHub"/>
+  <meta property="og:description" content="GitHub is a hosting platform for open source and private software projects, because it only supports Git as the only version library format for hosting, so the name GitHub."/>
+  <meta property="og:url" content="https://ankortn.github.io/"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <!-- <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG"> -->
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <!-- <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image"> -->
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="vision language models">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>BACON: Supercharge Your VLM with Bag-of-Concept Graph to Mitigate Hallucinations</title>
+  <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/954/954591.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">BACON: Supercharge Your VLM with Bag-of-Concept Graph to Mitigate Hallucinations</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+                  <span class="author-block">
+                    <a href="ZHANTAO YANG PERSONAL LINK" target="_blank">Zhantao Yang</a><sup>1,2,&#9733;</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="RUILI FENG PERSONAL LINK" target="_blank">Ruili Feng</a><sup>2,&#9733;</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="KEYU YAN PERSONAL LINK" target="_blank">Keyu Yan</a><sup>2</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="HUANGJI WANG PERSONAL LINK" target="_blank">Huangji Wang</a><sup>1</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="ZHICAI WANG PERSONAL LINK" target="_blank">Zhicai Wang</a><sup>2,3</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="SHANGWEN ZHU PERSONAL LINK" target="_blank">Shangwen Zhu</a><sup>1</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="HAN ZHANG PERSONAL LINK" target="_blank">Han Zhang</a><sup>1,2</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="JIE XIAO PERSONAL LINK" target="_blank">Jie Xiao</a><sup>2,3</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="PINGYU WU PERSONAL LINK" target="_blank">Pingyu Wu</a><sup>2,3</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="KAI ZHU PERSONAL LINK" target="_blank">Kai Zhu</a><sup>2</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="JIXUAN CHEN PERSONAL LINK" target="_blank">Jixuan Chen</a><sup>2</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="CHEN-WEI XIE PERSONAL LINK" target="_blank">Chen-Wei Xie</a><sup>2</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="CHAOJIE MAO PERSONAL LINK" target="_blank">Chaojie Mao</a><sup>2</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="YUE YANG PERSONAL LINK" target="_blank">Yue Yang</a><sup>4</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="HONGYANG ZHANG PERSONAL LINK" target="_blank">Hongyang Zhang</a><sup>5</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="YU LIU PERSONAL LINK" target="_blank">Yu Liu</a><sup>2</sup>,
+                  </span>
+                  <span class="author-block">
+                    <a href="FAN CHENG PERSONAL LINK" target="_blank">Fan Cheng</a><sup>1,&#8224;</sup>
+                  </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">
+                      <sup>1</sup>Shanghai Jiao Tong University, <sup>2</sup>Alibaba group<br> <sup>3</sup>University of Science and Technology of China<br> <sup>4</sup>University of Pennsylvania, <sup>5</sup>University of Waterloo
+                      <!-- <br> -->
+                      <!-- Conferance name and year -->
+                    </span>
+                    <span class="eql-cntrb"><small><br>&#8224;Corresponding author, <sup>*</sup>Equal Contribution</small></span>
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="static/pdfs/EMNLP2024_Graph_Caption.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+                  <span class="link-block">
+                    <a href="PleaseEnterHere" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="far fa-images"></i>
+                      </span>
+                      <span>Demo</span>
+                    </a>
+                  </span>
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <!-- Dataset link -->
+              <span class="link-block">
+                <a href="Which_dataset" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-database"></i>
+                  </span>
+                  <span>Dataset</span>
+                </a>
+              </span>
+
+              <!-- Model link -->
+              <span class="link-block">
+                <a href="readme" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-share-square"></i>
+                  </span>
+                  <span>Model</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section" style="background-color:#efeff081">
+  <div class="container is-max-desktop" id="gradio">
+    <iframe src="https://www.example.com" width="100%" height="600" frameborder="0" style="border:0; overflow:hidden;"></iframe>
+  </div>
+</section>
+<!-- <section class="section"  style="background-color:#efeff081">
+  <div class="container is-max-desktop" id="gradio">
+    <gradio-app src="https://llava.hliu.cc"></gradio-app>
+  </div>
+</section> -->
+
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            This paper presents <strong>Ba</strong>g-of-<strong>Con</strong>cept Graph (<strong>BACON</strong>) to gift models with limited linguistic abilities to taste the privilege of Vision Language Models (VLMs) and reduce hallucinations in the downstream tasks such as detection, visual question answering (VQA), and image generation. Since the visual scenes in physical worlds are structured with complex relations between objects, BACON breaks down annotations into basic minimum elements and presents them in a graph structure. Element-wise style enables easy understanding, and structural composition liberates difficult locating. Careful prompt design births the BACON captions with the help of publicly available VLMs and segmentation methods. In this way, we gather a dataset with 100K annotated images, which endow VLMs with remarkable capabilities, such as accurately generating BACON, transforming prompts into BACON format, envisioning scenarios in the style of BACON, and dynamically modifying elements within BACON through interactive dialogue and more. Wide representative experiments, including detection, VQA, and image generation tasks, tell BACON as a lifeline to achieve previous out-of-reach tasks or excel in their current cutting-edge solutions.
+          </p>
+          <!-- <p>
+              Instruction tuning large language models (LLMs) using machine-generated instruction-following data has improved zero-shot capabilities on new tasks in the language domain, but the idea is less explored in the multimodal field.
+              <ol type="1">
+                <li><b>Multimodal Instruct Data</b>. <span style="font-size: 95%;">We present the first attempt to use <a href="https://openai.com/research/gpt-4">language-only GPT-4</a> to generate multimodal language-image instruction-following data. </span></li>
+                <li><b>LLaVA Model</b>. <span style="font-size: 95%;">We introduce <it><b>LLaVA</b> (<b>L</b>arge <b>L</b>anguage-<b>a</b>nd-<b>V</b>ision <b>A</b>ssistant)</it>, an end-to-end trained large multimodal model that connects a vision encoder and LLM for general-purpose visual and language understanding.</li>
+                <li><b>Performance</b>. <span style="font-size: 95%;">Our early experiments show that LLaVA demonstrates impressive multimodel chat abilities, sometimes exhibiting the behaviors of multimodal GPT-4 on unseen images/instructions, and yields a 85.1% relative score compared with GPT-4 on a synthetic multimodal instruction-following dataset.
+                  When fine-tuned on <a href="https://scienceqa.github.io/">Science QA</a>, the synergy of LLaVA and GPT-4  achieves a new state-of-the-art accuracy of 92.53%.</li>
+                <li><b>Open-source</b>. <span style="font-size: 95%;">We make GPT-4 generated visual instruction tuning data, our model and code base publicly available.</li>
+              </ol>  
+           </p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<section class="hero is-small">
+  <!-- Results. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-six-fifths">
+      <h2 class="title is-3"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1447/PNG/512/32381bacon_98873.png"> BACON: Bag-of-Concept Graph</h2>
+    </div>
+  </div>
+  <!-- </div> -->
+  <!--/ Results. -->    
+<div class="container is-max-desktop">
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <div class="content has-text-justified"> 
+        <p>
+          BACON representation of an image, including overall description, object list, and relationships. BACON deconstructs the image annotations into basic elements, ensuring that even smaller downstream models can fully comprehend them. Subsequently, BACON employs a specific graph structure to amalgamate these elements, ensuring each element appears in a designated spot, allowing smaller downstream models to query and retrieve them easily.
+          <centering>
+            <div style="text-align: center;">
+              <img id="teaser" width="70%" src="static/images/first_image_1.png">     
+            </div>
+          </centering>
+          <p>
+            Given an image <span style="font-family: 'Times New Roman', Times, serif;">I</span>, we aim to induce a structural representation <span style="font-family: 'Times New Roman', Times, serif;">G = (D, O, R, B)</span>, where <span style="font-family: 'Times New Roman', Times, serif;">D</span> is the textual description, <span style="font-family: 'Times New Roman', Times, serif;">O</span> is the list of objects in the image, with <span style="font-family: 'Times New Roman', Times, serif;">R</span> denotes their relationships and <span style="font-family: 'Times New Roman', Times, serif;">B</span> as their bounding box positions. In practice, we optimize the construction of <span style="font-family: 'Times New Roman', Times, serif;">G</span> in two stages:           
+          <ul type="1">
+            <li><b>Graph Construction</b>. <span style="font-size: 95%;">This utilizes VLMs to generate the graph elements <span style="font-family: 'Times New Roman', Times, serif;">(D, O, R)</span> from the image.</span></li>
+            <ul type="1">
+              <li> <b>Deconstructing annotations</b>: BACON assists downstream models in understanding complex texts by decomposing the annotations of VLMs into basic elements and then combining them according to a specific structure.
+              <li> <b>BACON-Captioner</b>: We opt to fine-tune a 13B LLaVA model on the BACON dataset to serve as a specialized captioner.</span></li>
+            </ul>  
+            <li><b>Graph Grounding</b>. <span style="font-size: 95%;">
+              In image representation, spatial information is crucial. BACON ensures precise identification while maintaining localization accuracy.
+          </ul>  
+          <centering>
+            <div style="text-align: center;">
+              <img id="teaser" width="70%" src="static/images/grounding_dino.png">     
+            </div>
+            <b>Detailed method</b> for graph grounding. The method contains four steps: 
+            <ul type="1">
+              <li>Extracting BACON from images using GPT-4V or BACON-Captioner;</li>
+              <li>Getting candidate regions using Grounding DINO given the name of the object;</li>
+              <li>Using LLaVA to discard blatant incorrect regions;</li>
+              <li>Select the region whose image feature matches the text feature of object description the most by CLIP.</li>
+            </ul>
+          </centering>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="hero is-small is-light">
+  <!-- Results. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-six-fifths">
+      <h2 class="title is-3"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/3276/PNG/512/egg_bacon_dish_plate_food_icon_207982.png"> BACON Dataset</h2>
+    </div>
+  </div>
+  <!-- </div> -->
+  <!--/ Results. -->    
+<div class="container is-max-desktop">
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <div class="content has-text-justified"> 
+        <p>
+          BACON dataset is composed of two parts, the training set and the test benchmark, which share different collection methods. 
+          <!-- <centering>
+            <div style="text-align: center;">
+              <img id="teaser" width="70%" src="static/images/first_image_1.png">     
+            </div>
+          </centering> -->    
+          <ul type="1">
+            <li><b>Training Set</b>. <span style="font-size: 95%;"></li>
+            <ul type="1">
+              <li> <b>Graph Construction</b>: Graph construction method was employed to collect 110k BACON-image pairs. </li>
+              <li> <b>Re-annotation Process</b>: We engage in a thorough manual re-annotation process to eliminate ambiguities and incorrectness and get a refined dataset of 100k high-quality image-BACON pairs.</li>
+            </ul>  
+            <li><b>Test Benchmark</b>. <span style="font-size: 95%;">
+              A benchmark to offer open-vocabulary capabilities, detailed object attributes, and a comprehensive overall description. Finally, we annotated a test benchmark containing around 4k images, 40k objects, and 200k relationships.</span></li>
+              <br>
+              <centering>
+                <div style="text-align: center;">
+                  <img id="teaser" width="100%" src="static/images/test_pipeline.png">     
+                </div>
+                <br>
+                <b>A detailed overview of the method used to collect the BACON benchmark</b>, segmented into five distinct steps:
+                <ul type="1">
+                  <li>The SAM model segments all components within the image.</li>
+                  <li>VLMs identify the names of objects in the masked image obtained from the first step.</li>
+                  <li>Using the names identified in the second step, VLMs annotate each object in detail.</li>
+                  <li>VLMs generate an overall description of the image based on the list of objects derived from the above steps. </li>
+                  <li>Images created by randomly pairing two masked images from the first step are fed to VLMs to identify the relationship between the combined segments.</li>
+                </ul>
+                It is important to note that human annotation is required to correct and verify the outputs from steps two through five.
+              </centering>
+          </ul>  
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="hero is-small">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-six-fifths">
+      <h2 class="title is-3"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/3310/PNG/512/math_book_school_study_icon_209279.png"> Experiments</h2>
+    </div>
+  </div>
+<div class="container is-max-desktop">
+
+
+  <!-- Grounedtext2img. -->
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <h2 class="title is-4"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/2178/PNG/512/household_chores_task_washing_machine_clothes_appliance_icon_133381.png"> Downstream tasks benefiting from BACON</h2>
+      <div class="content has-text-justified"> 
+        The adaptable nature of BACON's structure enhances models' comprehension of complex text and empowers them to undertake tasks previously beyond their reach. We conduct evaluations across five downstream tasks, including object detection, point question answering (PointQA), Pointing question answering (PointingQA), scene graph generation (SGG), and image generation.<br><br>
+      <centering>
+        <div style="text-align: center;">
+          <img id="teaser" width="100%" src="static/images/first_image_2.png">     
+        </div>
+        <br>
+        <b>Schematic diagram of multiple exemplary downstream tasks can benefit from  BACON</b>. <br>Specifically, BACON can:
+        <ul type="1">
+          <li>enable VLMs to carry out the point question answering task previously beyond their scope;</li>
+          <li>assist text-to-image generative models such as SDXL in creating intricate images with higher precision as demanded by prompts;</li>
+          <li>execute open-vocabulary scene graph generation tasks that were not feasible for other VLMs.</li>
+        </ul>
+      </centering>
+      <br><br>
+      <centering>
+        <div style="text-align: center;">
+          <img id="teaser" width="100%" src="static/images/image_generation.png">     
+        </div>
+        <br>
+        This is the <b>comparative examples of image generation</b> reveal that BACON enhances advanced generative models like SDXL. SDXL and DALL-E 3 struggle with complex text and fail to produce corresponding images. Remarkably, BACON not only elevates SDXL's image quality but also markedly boosts its comprehension of intricate instructions, enabling it to surpass DALL-E 3 in terms of accurately generating images aligning with textual directives.
+      </centering>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grounedtext2img. -->
+  <!-- <div class="columns is-centered">
+    <div class="column is-full-width">
+      <h2 class="title is-4"> <img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1633/PNG/512/52757directhit_109431.png">Tasks directly using BACON</h2>
+      For completeness, we discuss downstream tasks where BACON can be used directly without special operations.
+    </div>
+  </div> -->
+
+  <!-- Grounedtext2img. -->
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <h2 class="title is-4"> <img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/651/PNG/512/Icon_Business_Set_00005_A_icon-icons.com_59846.png">Additional capabilities of captioner</h2>
+      Beyond obtaining BACON from images, the trained captioner is also adept at performing additional useful tasks, including interactively editing BACON, transforming ordinary prompts into BACON format, and planning positions of objects in BACON. <br><br>
+      <centering>
+        <div style="text-align: center;">
+          <img id="teaser" width="100%" src="static/images/edit.png">     
+        </div>
+      </centering>
+      <br>
+      This is <b>an example of interactively modifying</b> BACON using BACON-Captioner
+    </div>
+  </div>
+
+
+  <!-- Grounedtext2img. -->
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <h2 class="title is-4"> <img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1146/PNG/512/1486485582-311arrow-film-movie-play-player-start-video_81177.png">BACON on video captioning</h2>
+      <div class="content has-text-justified"> 
+      While BACON is primarily developed for image data, it can be extended to create structured captions for videos with the help of additional techniques that address the temporal dimension of video content.
+      <br><br>
+      <centering>
+        <div style="text-align: center;">
+          <img id="teaser" width="100%" src="static/images/video_caption_example_result_3.png">     
+        </div>
+      </centering>
+      <br>
+      This is <b>an example of BACON on video captioning</b>, which includes three components: an overall description, an object list, and their relationships, each dynamically evolving over time. With respect to a prior frame, updates are color-coded: new elements in green, removed in red, altered in gold, and persistent ones in black. BACON thus adeptly captures the temporal changes and salient details of each video frame, while its structured nature potentially aids in downstream model comprehension.
+    </div>
+    </div>
+  </div>
+
+  <!-- Grounedtext2img. -->
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <h2 class="title is-4"> <img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/561/PNG/512/seo-performance-marketing-graphic_icon-icons.com_53826.png">Performance</h2>
+    </div>
+  </div>
+</section>
+
+<!-- Image carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div id="results-carousel" class="carousel results-carousel">
+      <div class="item">
+        <!-- Your image here -->
+        <img src="static/images/pointing task.png" style="width: 100%;" alt="MY ALT TEXT"/>
+        <h2 class="subtitle has-text-centered">
+          <b>Quantitative comparison</b> on (Left) PointQA and (Right) PointingQA between BACON and baselines.
+        </h2>
+      </div>
+      <div class="item">
+        <!-- Your image here -->
+        <img src="static/images/precision_recall.png" style="width: 100%;" alt="MY ALT TEXT"/>
+        <h2 class="subtitle has-text-centered">
+          <b>Win rate of pairwise comparisons</b> between BACON-Captioner and other VLM-based captioners.
+       </h2>
+     </div>
+     <div class="item">
+      <!-- Your image here -->
+      <img src="static/images/comparison.png" style="width: 100%;" alt="MY ALT TEXT"/>
+      <h2 class="subtitle has-text-centered">
+        <b>Comparison of open-vocabulary object detection</b> among BACON, Grounding DINO, openvocabulary object detection models, and grounding caption models on BACON benchmark. GD represents Grounding DINO. We have calculated error bars for models that exhibit randomness.
+      </h2>
+    </div>
+    <div class="item">
+      <!-- Your image here -->
+      <img src="static/images/VG.png" style="width: 100%;" alt="MY ALT TEXT"/>
+      <h2 class="subtitle has-text-centered">
+        <b>Comparison on open-vocabulary scene graph generation task</b> between BACON and multiple baselines on VG dataset and BACON benchmark. The number of correct predictions is used as the metric.
+      </h2>
+    </div>
+    <div class="item">
+      <!-- Your image here -->
+      <img src="static/images/VQA.png" style="width: 100%;" alt="MY ALT TEXT"/>
+      <h2 class="subtitle has-text-centered">
+        <b>Quantitative comparison of VQA task</b> between BACON and multiple VLM-based baselines, where the input image of the QA model is replaced by its caption to evaluate the performance of the captioner. The metric is the accuracy of answering questions.
+      </h2>
+    </div>
+    <div class="item">
+      <!-- Your image here -->
+      <img src="static/images/accuracy.png" style="width: 100%;" alt="MY ALT TEXT"/>
+      <h2 class="subtitle has-text-centered">
+        <b>Accuracy in depicting objects (Ao) and relationships (Ar)</b>  in images generated from text prompts, as evaluated by human. We compare SDXL enhanced by BACON with SDXL and DALL-E 3.
+      </h2>
+    </div>
+    <div class="item">
+      <!-- Your image here -->
+      <img src="static/images/manual.png" style="width: 100%;" alt="MY ALT TEXT"/>
+      <h2 class="subtitle has-text-centered">
+        <b>Precision and recall score calculated by manual annotation</b> between BACON-Captioner and other VLM-based captioners.
+      </h2>
+    </div>
+    <div class="item">
+      <!-- Your image here -->
+      <img src="static/images/plantask.png" style="width: 100%;" alt="MY ALT TEXT"/>
+      <h2 class="subtitle has-text-centered">
+        <b>Comparison of plan task</b> between BACON and LayoutGPT on both MSCOCO and BACON benchmark.
+      </h2>
+    </div>
+    <div class="item">
+      <!-- Your image here -->
+      <img style="width: 50%;" src="static/images/grounding_dino_ablation.png" alt="MY ALT TEXT"/>
+      <h2 class="subtitle has-text-centered">
+        <b>Ablation study</b> of method in graph grounding, exploring the improvement of introducing CLIP and LLaVA, where the experiment is conducted on BACON benchmark.
+      </h2>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+<!-- End image carousel -->
+
+
+
+<section class="hero is-small is-light">
+  <!-- Results. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-six-fifths">
+      <h2 class="title is-3"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1137/PNG/512/1486394979-11-data-visualization_80549.png"> Visualization on Video Captioning</h2>
+    </div>
+  </div>
+  <!-- </div> -->
+  <!--/ Results. -->    
+<div class="container is-max-desktop">
+    <div class="hero-body">
+      <video poster="" id="tree" autoplay controls muted loop height="100%">
+        <!-- Your video here -->
+        <source src="static/videos/track_res_output.mp4"
+        type="video/mp4">
+      </video>
+      <h2>
+        While BACON is primarily developed for image data, it can be extended to create structured captions for videos with the help of additional techniques that address the temporal dimension of video content.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-small">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-six-fifths">
+      <h2 class="title is-3"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/4215/PNG/512/analysis_research_example_case_study_icon_262980.png"> Examples about BACON</h2>
+    </div>
+  </div>
+<div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- TBD -->
+    </div>
+  </div>
+</section>
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>
+        @inproceedings{abc,
+          author      = {def},
+          title       = {ghi},
+          booktitle   = {jkl},
+          year        = {nmo}
+        }
+      </code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+<section class="section" id="Acknowledgement">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgement</h2>
+    <p>
+      This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+             <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+    </p>
+</section>
+
+<!-- 
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+             <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer> -->
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
