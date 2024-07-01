@@ -56,55 +56,55 @@
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
                   <span class="author-block">
-                    <a href="ZHANTAO YANG PERSONAL LINK" target="_blank">Zhantao Yang</a><sup>1,2,&#9733;</sup>,
+                    <a href="ztyang196@gmail.com" target="_blank">Zhantao Yang</a><sup>1,2,*;</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="RUILI FENG PERSONAL LINK" target="_blank">Ruili Feng</a><sup>2,&#9733;</sup>,
+                    <a href="ruilifengustc@gmail.com" target="_blank">Ruili Feng</a><sup>2,*;</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="KEYU YAN PERSONAL LINK" target="_blank">Keyu Yan</a><sup>2</sup>,
+                      Keyu Yan<sup>2</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="HUANGJI WANG PERSONAL LINK" target="_blank">Huangji Wang</a><sup>1</sup>,
+                      Huangji Wang<sup>1</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="ZHICAI WANG PERSONAL LINK" target="_blank">Zhicai Wang</a><sup>2,3</sup>,
+                      Zhicai Wang<sup>2,3</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="SHANGWEN ZHU PERSONAL LINK" target="_blank">Shangwen Zhu</a><sup>1</sup>,
+                      Shangwen Zhu<sup>1</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="HAN ZHANG PERSONAL LINK" target="_blank">Han Zhang</a><sup>1,2</sup>,
+                      Han Zhang<sup>1,2</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="JIE XIAO PERSONAL LINK" target="_blank">Jie Xiao</a><sup>2,3</sup>,
+                      Jie Xiao<sup>2,3</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="PINGYU WU PERSONAL LINK" target="_blank">Pingyu Wu</a><sup>2,3</sup>,
+                      Pingyu Wu<sup>2,3</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="KAI ZHU PERSONAL LINK" target="_blank">Kai Zhu</a><sup>2</sup>,
+                      Kai Zhu<sup>2</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="JIXUAN CHEN PERSONAL LINK" target="_blank">Jixuan Chen</a><sup>2</sup>,
+                      Jixuan Chen<sup>2</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="CHEN-WEI XIE PERSONAL LINK" target="_blank">Chen-Wei Xie</a><sup>2</sup>,
+                      Chen-Wei Xie<sup>2</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="CHAOJIE MAO PERSONAL LINK" target="_blank">Chaojie Mao</a><sup>2</sup>,
+                      Chaojie Mao<sup>2</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="YUE YANG PERSONAL LINK" target="_blank">Yue Yang</a><sup>4</sup>,
+                      Yue Yang<sup>4</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="HONGYANG ZHANG PERSONAL LINK" target="_blank">Hongyang Zhang</a><sup>5</sup>,
+                      Hongyang Zhang<sup>5</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="YU LIU PERSONAL LINK" target="_blank">Yu Liu</a><sup>2</sup>,
+                      Yu Liu<sup>2</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="FAN CHENG PERSONAL LINK" target="_blank">Fan Cheng</a><sup>1,&#8224;</sup>
+                    <a href="chengfan@sjtu.edu.cn" target="_blank">Fan Cheng</a><sup>1,&#8224;</sup>
                   </span>
                   </div>
 
@@ -238,7 +238,8 @@
   <!-- Results. -->
   <div class="columns is-centered has-text-centered">
     <div class="column is-six-fifths">
-      <h2 class="title is-3"><img id="painting_icon" width="1%" src="https://cdn.icon-icons.com/icons2/1447/PNG/512/32381bacon_98873.png"> BACON: Bag-of-Concept Graph</h2>
+      <br>
+      <h2 class="title is-3"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1447/PNG/512/32381bacon_98873.png"> BACON: Bag-of-Concept Graph</h2>
     </div>
   </div>
   <!-- </div> -->
@@ -248,35 +249,28 @@
     <div class="column is-full-width">
       <div class="content has-text-justified"> 
         <p>
-          BACON representation of an image, including overall description, object list, and relationships. BACON deconstructs the image annotations into basic elements, ensuring that even smaller downstream models can fully comprehend them. Subsequently, BACON employs a specific graph structure to amalgamate these elements, ensuring each element appears in a designated spot, allowing smaller downstream models to query and retrieve them easily.
+          BACON deconstructs the <b>image annotations</b> into <b>a specific graph structure</b>, including <b>overall description, object list, and relationships</b>.
           <centering>
             <div style="text-align: center;">
-              <img id="teaser" width="70%" src="static/images/first_image_1.png">     
+              <img id="teaser" width="80%" src="static/images/first_image_3.png">     
             </div>
           </centering>
           <p>
-            Given an image <span style="font-family: 'Times New Roman', Times, serif;">I</span>, we aim to induce a structural representation <span style="font-family: 'Times New Roman', Times, serif;">G = (D, O, R, B)</span>, where <span style="font-family: 'Times New Roman', Times, serif;">D</span> is the textual description, <span style="font-family: 'Times New Roman', Times, serif;">O</span> is the list of objects in the image, with <span style="font-family: 'Times New Roman', Times, serif;">R</span> denotes their relationships and <span style="font-family: 'Times New Roman', Times, serif;">B</span> as their bounding box positions. In practice, we optimize the construction of <span style="font-family: 'Times New Roman', Times, serif;">G</span> in two stages:           
+            In practice, we optimize the construction in two stages:           
           <ul type="1">
-            <li><b>Graph Construction</b>. <span style="font-size: 95%;">This utilizes VLMs to generate the graph elements <span style="font-family: 'Times New Roman', Times, serif;">(D, O, R)</span> from the image.</span></li>
+            <li><b>Graph Construction</b>. </li>
             <ul type="1">
-              <li> <b>Deconstructing annotations</b>: BACON assists downstream models in understanding complex texts by decomposing the annotations of VLMs into basic elements and then combining them according to a specific structure.
-              <li> <b>BACON-Captioner</b>: We opt to fine-tune a 13B LLaVA model on the BACON dataset to serve as a specialized captioner.</span></li>
+              <li> <b>Deconstructing annotations</b>: BACON decomposes the annotations of VLMs into basic elements and then combining them according to a specific structure.
+              <li> <b>BACON-Captioner</b>: Fine-tune a 13B LLaVA model on the BACON dataset to serve as a specialized captioner.</span></li>
             </ul>  
-            <li><b>Graph Grounding</b>. <span style="font-size: 95%;">
-              In image representation, spatial information is crucial. BACON ensures precise identification while maintaining localization accuracy.
+            <li><b>Graph Grounding</b>. <span style="font-size: 95%;"></li>
+              <ul type="1">
+                <li><b>Get BACON:</b> Derive BACON by BACON-Captioner;</li>
+                <li><b>Graph Grounding:</b> Give each object corresponding region;</li>
+                <li><b>Distill Grounding:</b> Using LLaVA to discard blatant incorrect regions;</li>
+                <li><b>Match Best</b>: Match the most similar segmentation by CLIP.</li>
+              </ul>
           </ul>  
-          <centering>
-            <div style="text-align: center;">
-              <img id="teaser" width="70%" src="static/images/grounding_dino.png">     
-            </div>
-            <b>Detailed method</b> for graph grounding. The method contains four steps: 
-            <ul type="1">
-              <li>Extracting BACON from images using GPT-4V or BACON-Captioner;</li>
-              <li>Getting candidate regions using Grounding DINO given the name of the object;</li>
-              <li>Using LLaVA to discard blatant incorrect regions;</li>
-              <li>Select the region whose image feature matches the text feature of object description the most by CLIP.</li>
-            </ul>
-          </centering>
         </p>
       </div>
     </div>
@@ -291,7 +285,8 @@
   <!-- Results. -->
   <div class="columns is-centered has-text-centered">
     <div class="column is-six-fifths">
-      <h2 class="title is-3"><img id="painting_icon" width="1%" src="https://cdn.icon-icons.com/icons2/3276/PNG/512/egg_bacon_dish_plate_food_icon_207982.png"> BACON Dataset</h2>
+      <br>
+      <h2 class="title is-3"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/3276/PNG/512/egg_bacon_dish_plate_food_icon_207982.png"> BACON Dataset</h2>
     </div>
   </div>
   <!-- </div> -->
@@ -343,7 +338,8 @@
 <section class="hero is-small">
   <div class="columns is-centered has-text-centered">
     <div class="column is-six-fifths">
-      <h2 class="title is-3"><img id="painting_icon" width="1%" src="https://cdn.icon-icons.com/icons2/3310/PNG/512/math_book_school_study_icon_209279.png"> Experiments</h2>
+      <br>
+      <h2 class="title is-3"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/3310/PNG/512/math_book_school_study_icon_209279.png"> Experiments</h2>
     </div>
   </div>
 <div class="container is-max-desktop">
@@ -509,7 +505,8 @@
   <!-- Results. -->
   <div class="columns is-centered has-text-centered">
     <div class="column is-six-fifths">
-      <h2 class="title is-3"><img id="painting_icon" width="1%" src="https://cdn.icon-icons.com/icons2/1137/PNG/512/1486394979-11-data-visualization_80549.png"> Visualization on Video Captioning</h2>
+      <br>
+      <h2 class="title is-3"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1137/PNG/512/1486394979-11-data-visualization_80549.png"> Visualization on Video Captioning</h2>
     </div>
   </div>
   <!-- </div> -->
@@ -532,7 +529,7 @@
 <section class="hero is-small">
   <div class="columns is-centered has-text-centered">
     <div class="column is-six-fifths">
-      <h2 class="title is-3"><img id="painting_icon" width="1%" src="https://cdn.icon-icons.com/icons2/4215/PNG/512/analysis_research_example_case_study_icon_262980.png"> Examples about BACON</h2>
+      <h2 class="title is-3"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/4215/PNG/512/analysis_research_example_case_study_icon_262980.png"> Examples about BACON</h2>
     </div>
   </div>
 
@@ -551,16 +548,48 @@
 
   <div class="columns is-centered has-text-centered">
     <div class="column is-six-fifths">
-       <h2 class="title is-4">Complete Examples of BACON</h2>
+       <h2 class="title is-4">BACON-Captioner Transforms Brief Prompts into Distinctive Styles of BACON</h2>
     </div>
     </div>  
 
   <div class="columns is-centered has-text-centered">
   <div class="column is-six-fifths" style="display: flex; align-items: flex-start; justify-content: center;">
-    <img id="teaser" width="38%" src="static/images/bacon_example_1.png">
-    <img id="teaser" width="38%" src="static/images/bacon_example_2.png">
+    <img id="teaser" width="80%" src="static/images/recaption_3.png">
+    <!-- <img id="teaser" width="38%" src="static/images/recaption_1.png">
+    <img id="teaser" width="38%" src="static/images/recaption_2.png"> -->
   </div>
   </div>
+
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-six-fifths">
+       <h2 class="title is-4">Image Generation</h2>
+    </div>
+    </div>  
+
+  <div class="columns is-centered has-text-centered">
+  <div class="column is-six-fifths" style="display: flex; align-items: flex-start; justify-content: center;">
+    <img id="teaser" width="80%" src="static/images/image_generation_appendix_2.png">
+  </div>
+  </div>
+
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-six-fifths">
+       <h2 class="title is-4">Video Captioning</h2>
+    </div>
+    </div>  
+
+  <div class="columns is-centered has-text-centered">
+  <div class="column is-six-fifths" style="display: flex; align-items: flex-start; justify-content: center;">
+    <img id="teaser" width="80%" src="static/images/video_caption_example_result_1.png">
+  </div>
+  </div>
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-six-fifths" style="display: flex; align-items: flex-start; justify-content: center;">
+      <img id="teaser" width="80%" src="static/images/video_caption_example_result_2.png">
+    </div>
+    </div>
+
+
 
   <div class="columns is-centered has-text-centered">
     <div class="column is-six-fifths">
@@ -586,48 +615,12 @@
   </div>
   </div>
 
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-six-fifths">
-       <h2 class="title is-4">BACON-Captioner Transforms Brief Prompts into Distinctive Styles of BACON</h2>
-    </div>
-    </div>  
-
-  <div class="columns is-centered has-text-centered">
-  <div class="column is-six-fifths" style="display: flex; align-items: flex-start; justify-content: center;">
-    <img id="teaser" width="38%" src="static/images/recaption_1.png">
-    <img id="teaser" width="38%" src="static/images/recaption_2.png">
-  </div>
-  </div>
-
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-six-fifths">
-       <h2 class="title is-4">Image Generation</h2>
-    </div>
-    </div>  
-
-  <div class="columns is-centered has-text-centered">
-  <div class="column is-six-fifths" style="display: flex; align-items: flex-start; justify-content: center;">
-    <img id="teaser" width="45%" src="static/images/image_generation_appendix.png">
-  </div>
-  </div>
-
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-six-fifths">
-       <h2 class="title is-4">Video Captioning</h2>
-    </div>
-    </div>  
-
-  <div class="columns is-centered has-text-centered">
-  <div class="column is-six-fifths" style="display: flex; align-items: flex-start; justify-content: center;">
-    <img id="teaser" width="38%" src="static/images/video_caption_example_result_1.png">
-    <img id="teaser" width="38%" src="static/images/video_caption_example_result_2.png">
-  </div>
-  </div>
 </section>
 
 <!--BibTex citation -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
+      <br>
       <h2 class="title">BibTeX</h2>
       <pre><code>
         @inproceedings{abc,
@@ -643,6 +636,7 @@
 
 <section class="section" id="Acknowledgement">
   <div class="container is-max-desktop content">
+    <br>
     <h2 class="title">Acknowledgement</h2>
     <p>
       This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
