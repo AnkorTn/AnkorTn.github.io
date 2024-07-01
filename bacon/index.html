@@ -38,13 +38,39 @@
   <link rel="stylesheet" href="static/css/index.css">
 
   <!-- 这是给字体输入的库 -->
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playwrite+IT+Moderna:wght@100..400&display=swap" rel="stylesheet">
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Playwrite+IT+Moderna:wght@100..400&family=Playwrite+NG+Modern:wght@100..400&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Margarine&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+AU+NSW:wght@100..400&display=swap" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Playwrite+IS:wght@100..400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+NO:wght@100..400&display=swap" rel="stylesheet"> -->
+  <!-- https://fonts.google.com/selection/embed -->
   <style>
-      .handwriting {
-          font-family: 'Pacifico', cursive;
+    /* .handwriting {
+          font-family: 'Lobster', cursive;
       }
-  </style>
+    .playwrite-it-moderna {
+      font-family: "Playwrite IT Moderna", cursive;
+      font-optical-sizing: auto;
+      font-style: normal;
+    } */
+    /* .playwrite-au-nsw {
+      font-family: "Playwrite AU NSW", cursive;
+      font-optical-sizing: auto;
+      font-style: normal;
+    } */
+    .playwrite-is {
+      font-family: "Playwrite IS", cursive;
+      font-optical-sizing: auto;
+      font-style: normal;
+    }
+    /* .playwrite-no {
+      font-family: "Playwrite NO", cursive;
+      font-optical-sizing: auto;
+      font-style: normal;
+    } */
+  </style> 
   <!-- 结尾 -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -244,7 +270,8 @@
             This paper presents <strong>Ba</strong>g-of-<strong>Con</strong>cept Graph (<strong>BACON</strong>) to gift models with limited linguistic abilities to taste the privilege of Vision Language Models (VLMs) and reduce hallucinations in the downstream tasks such as detection, visual question answering (VQA), and image generation. Since the visual scenes in physical worlds are structured with complex relations between objects, BACON breaks down annotations into basic minimum elements and presents them in a graph structure. Element-wise style enables easy understanding, and structural composition liberates difficult locating. Careful prompt design births the BACON captions with the help of publicly available VLMs and segmentation methods. In this way, we gather a dataset with 100K annotated images, which endow VLMs with remarkable capabilities, such as accurately generating BACON, transforming prompts into BACON format, envisioning scenarios in the style of BACON, and dynamically modifying elements within BACON through interactive dialogue and more. Wide representative experiments, including detection, VQA, and image generation tasks, tell BACON as a lifeline to achieve previous out-of-reach tasks or excel in their current cutting-edge solutions.
           </em>
           </p>
-          <div class="handwriting">
+
+          <div class="playwrite-is">
             This paper presents <strong>Ba</strong>g-of-<strong>Con</strong>cept Graph (<strong>BACON</strong>) to gift models with limited linguistic abilities to taste the privilege of Vision Language Models (VLMs) and reduce hallucinations in the downstream tasks such as detection, visual question answering (VQA), and image generation. Since the visual scenes in physical worlds are structured with complex relations between objects, BACON breaks down annotations into basic minimum elements and presents them in a graph structure. Element-wise style enables easy understanding, and structural composition liberates difficult locating. Careful prompt design births the BACON captions with the help of publicly available VLMs and segmentation methods. In this way, we gather a dataset with 100K annotated images, which endow VLMs with remarkable capabilities, such as accurately generating BACON, transforming prompts into BACON format, envisioning scenarios in the style of BACON, and dynamically modifying elements within BACON through interactive dialogue and more. Wide representative experiments, including detection, VQA, and image generation tasks, tell BACON as a lifeline to achieve previous out-of-reach tasks or excel in their current cutting-edge solutions.
         </div>
         </div>
@@ -475,23 +502,24 @@
       <p>
             
         <ul type="1">
-          <li><b><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1146/PNG/512/1486485582-311arrow-film-movie-play-player-start-video_81177.png">BACON on video captioning</b></li>
+          <li><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1146/PNG/512/1486485582-311arrow-film-movie-play-player-start-video_81177.png">BACON on video captioning: <b>Changes at anytime</b></li>
           
-          While BACON is primarily developed for image data, it can be extended to create structured captions for videos with the help of additional techniques that address the temporal dimension of video content.
-          <br><br>
+          <ul type="1">
+            <li><b>Object List</b></li>
+            <li><b>Object Color</b></li>
+            <li><b>Object Description</b></li>
+          </ul>
           <centering>
             <div style="text-align: center;">
               <img id="teaser" width="100%" src="static/images/video_caption_example_result_3.png">     
             </div>
-            <div style="text-align: center;">
+            <!-- <div style="text-align: center;">
               <img id="teaser" width="100%" src="static/images/video_caption_example_result_2.png">     
             </div>
             <div style="text-align: center;">
               <img id="teaser" width="100%" src="static/images/video_caption_example_result_1.png">     
-            </div>
+            </div> -->
           </centering>
-          <br>
-          This is <b>an example of BACON on video captioning</b>, which includes three components: an overall description, an object list, and their relationships, each dynamically evolving over time. With respect to a prior frame, updates are color-coded: new elements in green, removed in red, altered in gold, and persistent ones in black. BACON thus adeptly captures the temporal changes and salient details of each video frame, while its structured nature potentially aids in downstream model comprehension.
       </p>
     </div>
   </div>
