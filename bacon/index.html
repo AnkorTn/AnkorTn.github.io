@@ -248,28 +248,35 @@
   <div class="columns is-centered">
     <div class="column is-full-width">
       <div class="content has-text-justified"> 
-        <p>
-          BACON deconstructs the <b>image annotations</b> into <b>a specific graph structure</b>, including <b>overall description, object list, and relationships</b>.
-          <centering>
-            <div style="text-align: center;">
-              <img id="teaser" width="80%" src="static/images/first_image_3.png">     
-            </div>
-          </centering>
-          <p>
-            In practice, we optimize the construction in two stages:           
+        <p>         
           <ul type="1">
             <li><b>Graph Construction</b>. </li>
             <ul type="1">
               <li> <b>Deconstructing annotations</b>: BACON decomposes the annotations of VLMs into basic elements and then combining them according to a specific structure.
-              <li> <b>BACON-Captioner</b>: Fine-tune a 13B LLaVA model on the BACON dataset to serve as a specialized captioner.</span></li>
+              <li> <b>BACON-Captioner</b>: Fine-tune a 13B LLaVA model on the BACON dataset to serve as a specialized captioner.</li>
+              <li> <b>Graph Structure</b>: BACON deconstructs the <b>image annotations</b> into <b>a specific graph structure</b>, including <b>overall description, object list, and relationships</b>.</li>
             </ul>  
+            <div style="text-align: center;">
+              <img id="teaser" width="100%" src="static/images/first_image_3.png">     
+            </div>
             <li><b>Graph Grounding</b>. <span style="font-size: 95%;"></li>
               <ul type="1">
-                <li><b>Get BACON:</b> Derive BACON by BACON-Captioner;</li>
-                <li><b>Graph Grounding:</b> Give each object corresponding region;</li>
-                <li><b>Distill Grounding:</b> Using LLaVA to discard blatant incorrect regions;</li>
-                <li><b>Match Best</b>: Match the most similar segmentation by CLIP.</li>
+                <li><b>1. Get BACON:</b> Derive BACON by BACON-Captioner;</li>
+                <li><b>2. Graph Grounding:</b> Give each object corresponding region;</li>
+                <li><b>3. Distill Grounding:</b> Using LLaVA to discard blatant incorrect regions;</li>
+                <li><b>4. Match Best</b>: Match the most similar segmentation by CLIP.</li>
               </ul>
+              <div style="text-align: center;">
+                <img id="teaser" width="100%" src="static/images/grounding_dino.png">     
+              </div>
+            <li><b>Root Words and Detected Catagories</b> in BACON
+            </li>
+            <ul type="1">
+              <li><b>Substitutability:</b> BACON-Captioner can effectively take over from GPT-4V in generating BACON from images.</li>
+            </ul>
+            <div style="text-align: center;">
+              <img id="teaser" width="100%" src="static/images/statistic_2.png">     
+            </div>
           </ul>  
         </p>
       </div>
@@ -296,7 +303,7 @@
     <div class="column is-full-width">
       <div class="content has-text-justified"> 
         <p>
-          BACON dataset is composed of two parts, the training set and the test benchmark, which share different collection methods. 
+          To the best of our knowledge, this is the <b>first</b> method designed for <b>open-vocabulary tasks</b>.
           <!-- <centering>
             <div style="text-align: center;">
               <img id="teaser" width="70%" src="static/images/first_image_1.png">     
@@ -305,27 +312,28 @@
           <ul type="1">
             <li><b>Training Set</b>. <span style="font-size: 95%;"></li>
             <ul type="1">
-              <li> <b>Graph Construction</b>: Graph construction method was employed to collect 110k BACON-image pairs. </li>
-              <li> <b>Re-annotation Process</b>: We engage in a thorough manual re-annotation process to eliminate ambiguities and incorrectness and get a refined dataset of 100k high-quality image-BACON pairs.</li>
+              <li> <b>Large Scale</b>: Refined <b>100k</b> BACON-image pairs. </li>
+              <li> <b>Distill Process</b>: Graph construction + graph grounding. (As is shown in the previous section)</li>
             </ul>  
-            <li><b>Test Benchmark</b>. <span style="font-size: 95%;">
-              A benchmark to offer open-vocabulary capabilities, detailed object attributes, and a comprehensive overall description. Finally, we annotated a test benchmark containing around 4k images, 40k objects, and 200k relationships.</span></li>
-              <br>
-              <centering>
-                <div style="text-align: center;">
-                  <img id="teaser" width="100%" src="static/images/test_pipeline.png">     
-                </div>
-                <br>
-                <b>A detailed overview of the method used to collect the BACON benchmark</b>, segmented into five distinct steps:
+            <div style="text-align: center;">
+              <img id="teaser" width="100%" src="static/images/train_pipeline.png">     
+            </div>
+            <li><b>Test Benchmark</b>.</li> 
+              <ul type="1">
+                <li> <b>Large Scale</b>: <b>4k</b> images, <b>40k</b> objects, and <b>200k</b> relationships. </li>
+                <li> <b>Distill Process</b>: Generate BACON-style <b>(1)(2)(3)</b> indivisually.</li>
+                <li><b>Human Fine-tune</b>: Human annotation is required to correct and verify the outputs.</li>
+                <li><b>Detailed overview</b>: </li>
                 <ul type="1">
-                  <li>The SAM model segments all components within the image.</li>
-                  <li>VLMs identify the names of objects in the masked image obtained from the first step.</li>
-                  <li>Using the names identified in the second step, VLMs annotate each object in detail.</li>
-                  <li>VLMs generate an overall description of the image based on the list of objects derived from the above steps. </li>
-                  <li>Images created by randomly pairing two masked images from the first step are fed to VLMs to identify the relationship between the combined segments.</li>
+                  <li><b>1. Segmentation by SAM</b>.</li>
+                  <li><b>2. Get Lists of Objects by VLMs</b>.</li>
+                  <li><b>3. Overall Description Annotations by VLMs.</b></li>
+                  <li><b>4. Identify relationships by VLMs</b>. </li>
                 </ul>
-                It is important to note that human annotation is required to correct and verify the outputs from steps two through five.
-              </centering>
+              </ul> 
+              <div style="text-align: center;">
+                <img id="teaser" width="100%" src="static/images/test_pipeline.png">     
+              </div>
           </ul>  
         </p>
       </div>
@@ -531,19 +539,6 @@
     <div class="column is-six-fifths">
       <h2 class="title is-3"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/4215/PNG/512/analysis_research_example_case_study_icon_262980.png"> Examples about BACON</h2>
     </div>
-  </div>
-
-
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-six-fifths">
-       <h2 class="title is-4">Root Words and Detected Catagories in BACON on Testset</h2>
-    </div>
-    </div>  
-
-  <div class="columns is-centered has-text-centered">
-  <div class="column is-six-fifths" style="display: flex; align-items: flex-start; justify-content: center;">
-    <img id="teaser" width="80%" src="static/images/statistic_2.png">
-  </div>
   </div>
 
   <div class="columns is-centered has-text-centered">
