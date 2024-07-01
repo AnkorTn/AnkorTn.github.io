@@ -37,6 +37,15 @@
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
 
+  <!-- 这是给字体输入的库 -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+      .handwriting {
+          font-family: 'Pacifico', cursive;
+      }
+  </style>
+  <!-- 结尾 -->
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
@@ -56,10 +65,10 @@
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
                   <span class="author-block">
-                    <a href="mailto:ztyang196@gmail.com" target="_blank">Zhantao Yang</a><sup>1,2,*;</sup>,
+                    Zhantao Yang<sup>1,2,*;</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="mailto:ruilifengustc@gmail.com" target="_blank">Ruili Feng</a><sup>2,*;</sup>,
+                    Ruili Feng<sup>2,*;</sup>,
                   </span>
                   <span class="author-block">
                       Keyu Yan<sup>2</sup>,
@@ -68,7 +77,7 @@
                       Huangji Wang<sup>1</sup>,
                   </span>
                   <span class="author-block">
-                      Zhicai Wang<sup>2,3</sup>,
+                      Zhicai Wang<sup>2</sup>,
                   </span>
                   <span class="author-block">
                       Shangwen Zhu<sup>1</sup>,
@@ -77,10 +86,10 @@
                       Han Zhang<sup>1,2</sup>,
                   </span>
                   <span class="author-block">
-                      Jie Xiao<sup>2,3</sup>,
+                      Jie Xiao<sup>2</sup>,
                   </span>
                   <span class="author-block">
-                      Pingyu Wu<sup>2,3</sup>,
+                      Pingyu Wu<sup>2</sup>,
                   </span>
                   <span class="author-block">
                       Kai Zhu<sup>2</sup>,
@@ -95,25 +104,27 @@
                       Chaojie Mao<sup>2</sup>,
                   </span>
                   <span class="author-block">
-                      Yue Yang<sup>4</sup>,
+                      Yue Yang<sup>3</sup>,
                   </span>
                   <span class="author-block">
-                      Hongyang Zhang<sup>5</sup>,
+                      Hongyang Zhang<sup>4</sup>,
                   </span>
                   <span class="author-block">
                       Yu Liu<sup>2</sup>,
                   </span>
                   <span class="author-block">
-                    <a href="mailto:chengfan@sjtu.edu.cn" target="_blank">Fan Cheng</a><sup>1,&#8224;</sup>
+                    Fan Cheng<sup>1,&#8224;</sup>
                   </span>
                   </div>
 
                   <div class="is-size-5 publication-authors">
                     <span class="author-block">
-                      <sup>1</sup>Shanghai Jiao Tong University, <sup>2</sup>Alibaba group<br> <sup>3</sup>University of Science and Technology of China<br> <sup>4</sup>University of Pennsylvania, <sup>5</sup>University of Waterloo
+                      <sup>1</sup>Shanghai Jiao Tong University, <sup>2</sup>Alibaba group<br> <sup>3</sup>University of Pennsylvania, <sup>4</sup>University of Waterloo
                       <!-- <br> -->
                       <!-- Conferance name and year -->
                     </span>
+                    <span class="eql-cntrb"><small><br>&#8224;<a href="mailto:chengfan@sjtu.edu.cn">chengfan@sjtu.edu.cn</a>, <sup>*</sup><a href="mailto:ztyang196@gmail.com">ztyang196@gmail.com</a>, <sup>*</sup><a href="mailto:ruilifengustc@gmail.com">ruilifengustc@gmail.com</a>, </small></span>
+                    
                     <span class="eql-cntrb"><small><br>&#8224;Corresponding author, <sup>*</sup>Equal Contribution</small></span>
                   </div>
 
@@ -192,7 +203,20 @@
 </section>
 
 
-
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video poster="" id="tree" autoplay controls muted loop height="100%">
+        <!-- Your video here -->
+        <source src="static/videos/track_res_output.mp4"
+        type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+      </h2>
+    </div>
+  </div>
+</section>
 
 <section class="section" style="background-color:#efeff081">
   <div class="container is-max-desktop" id="gradio">
@@ -215,18 +239,13 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
+            <em>
             This paper presents <strong>Ba</strong>g-of-<strong>Con</strong>cept Graph (<strong>BACON</strong>) to gift models with limited linguistic abilities to taste the privilege of Vision Language Models (VLMs) and reduce hallucinations in the downstream tasks such as detection, visual question answering (VQA), and image generation. Since the visual scenes in physical worlds are structured with complex relations between objects, BACON breaks down annotations into basic minimum elements and presents them in a graph structure. Element-wise style enables easy understanding, and structural composition liberates difficult locating. Careful prompt design births the BACON captions with the help of publicly available VLMs and segmentation methods. In this way, we gather a dataset with 100K annotated images, which endow VLMs with remarkable capabilities, such as accurately generating BACON, transforming prompts into BACON format, envisioning scenarios in the style of BACON, and dynamically modifying elements within BACON through interactive dialogue and more. Wide representative experiments, including detection, VQA, and image generation tasks, tell BACON as a lifeline to achieve previous out-of-reach tasks or excel in their current cutting-edge solutions.
+          </em>
           </p>
-          <!-- <p>
-              Instruction tuning large language models (LLMs) using machine-generated instruction-following data has improved zero-shot capabilities on new tasks in the language domain, but the idea is less explored in the multimodal field.
-              <ol type="1">
-                <li><b>Multimodal Instruct Data</b>. <span style="font-size: 95%;">We present the first attempt to use <a href="https://openai.com/research/gpt-4">language-only GPT-4</a> to generate multimodal language-image instruction-following data. </span></li>
-                <li><b>LLaVA Model</b>. <span style="font-size: 95%;">We introduce <it><b>LLaVA</b> (<b>L</b>arge <b>L</b>anguage-<b>a</b>nd-<b>V</b>ision <b>A</b>ssistant)</it>, an end-to-end trained large multimodal model that connects a vision encoder and LLM for general-purpose visual and language understanding.</li>
-                <li><b>Performance</b>. <span style="font-size: 95%;">Our early experiments show that LLaVA demonstrates impressive multimodel chat abilities, sometimes exhibiting the behaviors of multimodal GPT-4 on unseen images/instructions, and yields a 85.1% relative score compared with GPT-4 on a synthetic multimodal instruction-following dataset.
-                  When fine-tuned on <a href="https://scienceqa.github.io/">Science QA</a>, the synergy of LLaVA and GPT-4  achieves a new state-of-the-art accuracy of 92.53%.</li>
-                <li><b>Open-source</b>. <span style="font-size: 95%;">We make GPT-4 generated visual instruction tuning data, our model and code base publicly available.</li>
-              </ol>  
-           </p> -->
+          <div class="handwriting">
+            This paper presents <strong>Ba</strong>g-of-<strong>Con</strong>cept Graph (<strong>BACON</strong>) to gift models with limited linguistic abilities to taste the privilege of Vision Language Models (VLMs) and reduce hallucinations in the downstream tasks such as detection, visual question answering (VQA), and image generation. Since the visual scenes in physical worlds are structured with complex relations between objects, BACON breaks down annotations into basic minimum elements and presents them in a graph structure. Element-wise style enables easy understanding, and structural composition liberates difficult locating. Careful prompt design births the BACON captions with the help of publicly available VLMs and segmentation methods. In this way, we gather a dataset with 100K annotated images, which endow VLMs with remarkable capabilities, such as accurately generating BACON, transforming prompts into BACON format, envisioning scenarios in the style of BACON, and dynamically modifying elements within BACON through interactive dialogue and more. Wide representative experiments, including detection, VQA, and image generation tasks, tell BACON as a lifeline to achieve previous out-of-reach tasks or excel in their current cutting-edge solutions.
+        </div>
         </div>
       </div>
     </div>
@@ -409,7 +428,7 @@
           <li><b>4. Image Generation</b></li> 
           <br>
           <div style="text-align: center;">
-            <img id="teaser" width="100%" src="static/images/image_generation_gray.png">   
+            <img id="teaser" width="100%" src="static/images/image_generation_appendix_3.png">   
           </div>
           <br>
           <li><b>5. Precision & Recall and User Study</b></li> 
@@ -442,60 +461,20 @@
             
         <ul type="1">
           <li><b><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1146/PNG/512/1486485582-311arrow-film-movie-play-player-start-video_81177.png">BACON on video captioning</b></li>
-          <!-- <div style="text-align: center;">
-            <img id="teaser" width="100%" src="static/images/train_pipeline.png">     
-          </div> -->
-          <li><b>2. Point/Pointing/Video Question Answering (PointQA/PointingQA/VQA)</b></li>
-          <!-- <br>
-          <div style="text-align: center;">
-            <img id="teaser" width="100%" src="static/images/image_generation_gray.png">   
-          </div>
-          <br> -->
+          
+          While BACON is primarily developed for image data, it can be extended to create structured captions for videos with the help of additional techniques that address the temporal dimension of video content.
+          <br><br>
+          <centering>
+            <div style="text-align: center;">
+              <img id="teaser" width="100%" src="static/images/video_caption_example_result_3.png">     
+            </div>
+          </centering>
+          <br>
+          This is <b>an example of BACON on video captioning</b>, which includes three components: an overall description, an object list, and their relationships, each dynamically evolving over time. With respect to a prior frame, updates are color-coded: new elements in green, removed in red, altered in gold, and persistent ones in black. BACON thus adeptly captures the temporal changes and salient details of each video frame, while its structured nature potentially aids in downstream model comprehension.
       </p>
     </div>
   </div>
 </div>
-</section>
-
-<section class="hero is-small is-light">
-  <!-- Results. -->
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-six-fifths">
-      <br>
-      <h2 class="title is-3"><img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1137/PNG/512/1486394979-11-data-visualization_80549.png"> Visualization on Video Captioning</h2>
-    </div>
-  </div>
-  <!-- </div> -->
-  <!--/ Results. -->    
-
-<!-- Grounedtext2img. -->
-<div class="columns is-centered">
-  <div class="column is-full-width">
-    <h2 class="title is-4"> <img id="painting_icon" width="3%" src="https://cdn.icon-icons.com/icons2/1146/PNG/512/1486485582-311arrow-film-movie-play-player-start-video_81177.png">BACON on video captioning</h2>
-    <div class="content has-text-justified"> 
-    While BACON is primarily developed for image data, it can be extended to create structured captions for videos with the help of additional techniques that address the temporal dimension of video content.
-    <br><br>
-    <centering>
-      <div style="text-align: center;">
-        <img id="teaser" width="100%" src="static/images/video_caption_example_result_3.png">     
-      </div>
-    </centering>
-    <br>
-    This is <b>an example of BACON on video captioning</b>, which includes three components: an overall description, an object list, and their relationships, each dynamically evolving over time. With respect to a prior frame, updates are color-coded: new elements in green, removed in red, altered in gold, and persistent ones in black. BACON thus adeptly captures the temporal changes and salient details of each video frame, while its structured nature potentially aids in downstream model comprehension.
-  </div>
-  </div>
-<div class="container is-max-desktop">
-    <div class="hero-body">
-      <video poster="" id="tree" autoplay controls muted loop height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/track_res_output.mp4"
-        type="video/mp4">
-      </video>
-      <h2>
-        While BACON is primarily developed for image data, it can be extended to create structured captions for videos with the help of additional techniques that address the temporal dimension of video content.
-      </h2>
-    </div>
-  </div>
 </section>
 
 
@@ -506,17 +485,7 @@
     </div>
   </div>
 
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-six-fifths">
-       <h2 class="title is-4">Image Generation</h2>
-    </div>
-    </div>  
 
-  <div class="columns is-centered has-text-centered">
-  <div class="column is-six-fifths" style="display: flex; align-items: flex-start; justify-content: center;">
-    <img id="teaser" width="80%" src="static/images/image_generation_appendix_2.png">
-  </div>
-  </div>
 
   <div class="columns is-centered has-text-centered">
     <div class="column is-six-fifths">
