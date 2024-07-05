@@ -8,305 +8,382 @@
     <link rel="stylesheet" href="static/css/normalize.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="static/css/cayman.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+    <style>
+        #pdf-render {
+            border: 1px solid #000;
+            width: 100%;
+            height: 600px;
+        }
+    </style>
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">课程材料（研究生篇）</h1>
-      <h2 class="project-tagline"></h2>
-      <a href="https://github.com/AnkorTn" class="btn">看看我的GitHub</a>
-      <a href="classes/" class="btn">课程材料</a>
+      <h1 class="project-name">区块链技术(CS7308-033-M01)</h1>
+      <h2 class="project-tagline">By <strong>Prof. Zhen Liu</strong>, 2023-2024-Semester 1.</h2>
     </section>
 
     <section class="main-content">
-      <p>我很早就想把我整个大学的课程、课件之类的给整合一次，说不定能给未来的同学、朋友们派上用场，只是之前一直一直一直没做。今天啥事都不想干，就想着整合整合试试先。目前先考虑研究生相关的材料吧！研究生的材料我在这台工作机上还是都有的！(2024.07.05)</p>
+      <p>评价：好课程，由浅入深，不过最后听不太懂</p>
 
-      
+      <canvas id="pdf-render"></canvas>
 
-      
+    <script>
+        const url = 'static/pdfs/lec1.pdf';
 
-      <p>Text can be <strong>bold</strong>, <em>italic</em>, or <del>strikethrough</del>. <a href="https://github.com">Links</a> should be blue with no underlines (unless hovered over).</p>
+        let pdfDoc = null,
+            pageNum = 1,
+            pageIsRendering = false,
+            pageNumIsPending = null;
 
-      <p>There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.</p>
+        const scale = 1.5,
+              canvas = document.querySelector('#pdf-render'),
+              ctx = canvas.getContext('2d');
 
-      <p>There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.</p>
+        // Render the page
+        const renderPage = num => {
+            pageIsRendering = true;
 
-      <blockquote>
-      <p>There should be no margin above this first sentence.</p>
+            // Get page
+            pdfDoc.getPage(num).then(page => {
+                const viewport = page.getViewport({ scale });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
 
-      <p>Blockquotes should be a lighter gray with a gray border along the left side.</p>
+                const renderCtx = {
+                    canvasContext: ctx,
+                    viewport
+                };
 
-      <p>There should be no margin below this final sentence.</p>
-      </blockquote>
+                page.render(renderCtx).promise.then(() => {
+                    pageIsRendering = false;
 
-      <h1>
-      <a id="user-content-header-1" class="anchor" href="#header-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Header 1</h1>
+                    if (pageNumIsPending !== null) {
+                        renderPage(pageNumIsPending);
+                        pageNumIsPending = null;
+                    }
+                });
 
-      <p>This is a normal paragraph following a header. Bacon ipsum dolor sit amet t-bone doner shank drumstick, pork belly porchetta chuck sausage brisket ham hock rump pig. Chuck kielbasa leberkas, pork bresaola ham hock filet mignon cow shoulder short ribs biltong.</p>
+                document.querySelector('#page-num').textContent = num;
+            });
+        };
 
-      <h2>
-      <a id="user-content-header-2" class="anchor" href="#header-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>Header 2</h2>
+        // Get Document
+        pdfjsLib.getDocument(url).promise.then(pdfDoc_ => {
+            pdfDoc = pdfDoc_;
 
-      <blockquote>
-      <p>This is a blockquote following a header. Bacon ipsum dolor sit amet t-bone doner shank drumstick, pork belly porchetta chuck sausage brisket ham hock rump pig. Chuck kielbasa leberkas, pork bresaola ham hock filet mignon cow shoulder short ribs biltong.</p>
-      </blockquote>
+            document.querySelector('#page-count').textContent = pdfDoc.numPages;
 
-      <h3>
-      <a id="user-content-header-3" class="anchor" href="#header-3" aria-hidden="true"><span class="octicon octicon-link"></span></a>Header 3</h3>
+            renderPage(pageNum);
+        });
 
-      <pre><code>This is a code block following a header.</code></pre>
+        // Check for pages rendering
+        const queueRenderPage = num => {
+            if (pageIsRendering) {
+                pageNumIsPending = num;
+            } else {
+                renderPage(num);
+            }
+        };
 
-      <h4>
-      <a id="user-content-header-4" class="anchor" href="#header-4" aria-hidden="true"><span class="octicon octicon-link"></span></a>Header 4</h4>
+        // Show Prev Page
+        const showPrevPage = () => {
+            if (pageNum <= 1) {
+                return;
+            }
+            pageNum--;
+            queueRenderPage(pageNum);
+        };
 
-      <ul class="task-list">
-      <li>This is an unordered list following a header.</li>
-      <li>This is an unordered list following a header.</li>
-      <li>This is an unordered list following a header.</li>
-      </ul>
+        // Show Next Page
+        const showNextPage = () => {
+            if (pageNum >= pdfDoc.numPages) {
+                return;
+            }
+            pageNum++;
+            queueRenderPage(pageNum);
+        };
 
-      <h5>
-      <a id="user-content-header-5" class="anchor" href="#header-5" aria-hidden="true"><span class="octicon octicon-link"></span></a>Header 5</h5>
+        // Button Events
+        document.querySelector('#prev-page').addEventListener('click', showPrevPage);
+        document.querySelector('#next-page').addEventListener('click', showNextPage);
+    </script>
 
-      <ol class="task-list">
-      <li>This is an ordered list following a header.</li>
-      <li>This is an ordered list following a header.</li>
-      <li>This is an ordered list following a header.</li>
-      </ol>
+      <!-- <h1>课程介绍：</h1>
 
-      <h6>
-      <a id="user-content-header-6" class="anchor" href="#header-6" aria-hidden="true"><span class="octicon octicon-link"></span></a>Header 6</h6>
+    <h2>概述（考试范围）</h2>
+    <p>
+        历史、本质特征、技术、每个技术干什么用的、应用（本质和特征比较重要：他就是个数据库、技术、协议、软件代码；去中心化（不依赖于中心化的情况下提供可信数据）、只增数据库；recoder处理业务数据、转换成区块进行进一步处理）
+    </p>
 
-      <table>
-      <thead>
-      <tr>
-      <th>What</th>
-      <th>Follows</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-      <td>A table</td>
-      <td>A header</td>
-      </tr>
-      <tr>
-      <td>A table</td>
-      <td>A header</td>
-      </tr>
-      <tr>
-      <td>A table</td>
-      <td>A header</td>
-      </tr>
-      </tbody>
-      </table>
+    <h2>历史</h2>
+    <p>
+        比特币的出现：2008年中本聪的电子支付系统（bitcoin）：去中心化（不依赖于任何的可信机构）（P2P系统）（用户的匿名性）。并且提出了blockchain的概念。（只是货币）
+    </p>
+    <p>
+        2009年Bitcoin的network开始运行。该系统开始运行并且到今天依旧在运行。
+    </p>
+    <p>
+        技术：2015年以太坊出现：native cryptocurrency，可编程的，第二个或者第三个里程碑的事件，已经成为了一个重要的“区块链技术”，而不是普通的货币。
+    </p>
+    <p>
+        理论基础：然而金融相关的，缺少理论安全基础是非常危险的。15年之前是没有理论基础，15年对比特币的协议安全性进行了分析，意味着区块链的理论基础开始建立起来了。
+    </p>
 
-      <hr>
+    <h2>本质特征</h2>
+    <p>
+        一个区块链就是数据库（去中心化或者多中心化去大量数据维护的）、密码学技术为基础的对大量数据进行组织和维护的协议/数据库。
+    </p>
+    <p>
+        区块链技术是一种以密码学技术为基础，以去中心化或多中心化的方式对数据进行存储和管理，从而在<strong>不依赖可信中心机构的情况下提供”可信数据“的技术。</strong>
+    </p>
+    <p>
+        可信数据：不可伪造、不可篡改、不可否认、可溯源。
+    </p>
 
-      <p>There's a horizontal rule above and below this.</p>
+    <h2>应用场景</h2>
+    <p>
+        去中心化的智能合约
+    </p>
+    <ul>
+        <li>在那些依赖中心信任机构的应用中，去掉或降低中心机构所带来的成本、效率代价</li>
+        <li>银行清算等</li>
+    </ul>
+    <p>
+        提供可信数据：食品溯源、征信等
+    </p>
 
-      <hr>
+    <h2>区块链数据结构</h2>
+    <ul>
+        <li>处理数据：数据库的记录：records：业务数据、包括交易、事件等等</li>
+        <li>组织数据：区块：blocks：是有序记录的集合，每个区块只会写入数据库中各一次</li>
+        <li>串起数据：区块链：blockchain：只增数据库（增删改查），blockchain只能有增和查，利用密码学哈希函数穿成一条链，实际上就是block的哈希链，每一个block包括了前一个block的哈希值。</li>
+    </ul>
+    <p>
+        数据被存储的方式是怎么做的：数据被存储为区块构成的链。
+    </p>
+    <p>
+        数据被添加的方式：什么数据能够被添加？（数据的添加是通过分布式共识、分布式数据库进行达成的，是为了去中心化），各个节点存储一个完整的数据库，并且通过各个节点之间运行分布式共识去决定什么数据能够被写入区块链。
+    </p>
+    <p>
+        所以数据的静态存储：哈希链；数据的动态添加：分布式共识。
+    </p>
 
-      <p>Here is an unordered list:</p>
+    <h2>关键点</h2>
+    <ul>
+        <li>基本结构：分布式网络</li>
+        <li>本质：只增数据库（数据以hash链存储，通过分布式共识进行加入）</li>
+        <li>特征：在去中心化的情况下实现可信数据</li>
+    </ul>
+    <p>
+        区块链没有新技术，但是把现有的技术进行有机的粘合：包括P2P网络、分布式数据库、密码学、博弈论、分布式共识、智能合约等等。
+    </p>
+    <p>
+        区块链是一种分布式账本（Distributed Ledger）技术，是一种去中心化的数据库技术，是一种以密码学技术为基础的可信数据技术。
+    </p>
+    <p>
+        需要注意，区块链的分布式和正常的分布式数据库有所不同，正常的分布式数据库每个数据库节点互相信任，而区块链的分布式数据库是不互相信任的（只信任自己、既做服务器又做客户端），需要通过分布式共识来达成一致。
+    </p>
+    <p>
+        比特币没有用加密算法，比特币是一种数字货币，只用了hash等普通方法，加密应当意味着可以反推可破解。
+    </p>
 
-      <ul class="task-list">
-      <li>Salt-n-Pepa</li>
-      <li>Bel Biv DeVoe</li>
-      <li>Kid 'N Play</li>
-      </ul>
+    <h2>区块链的应用</h2>
+    <ul>
+        <li>公链：任何节点都可以参与操作（基本都是数字货币）</li>
+        <li>联盟链：企业政府等权威机构安全访问控制</li>
+        <li>私有链：只有某个组织可以参与系统的操作</li>
+    </ul>
 
-      <p>And an ordered list:</p>
+    <h2>课程内容</h2>
+    <p>
+        区块链的超级简练简介、密码学简介、比特币介绍、共识协议的简单介绍、区块链的隐私保护（密码原语、环签名交易）、其他的一些区块链系统介绍
+    </p>
+    <hr>
+    <h1>技术概述：</h1>
 
-      <ol class="task-list">
-      <li>Michael Jackson</li>
-      <li>Michael Bolton</li>
-      <li>Michael Bublé</li>
-      </ol>
+    <h2>概述（考试范围）</h2>
+    <p>
+        交易、区块、链
+    </p>
 
-      <p>And an unordered task list:</p>
+    <h2>基本概念</h2>
+    <p>
+        区块链技术是一种以密码学技术为基础，以去中心化或多中心化的方式，对大量数据进行组织和维护，从而在不依赖中心结构的情况下提供可信数据。或者说是一个去中心化的或者多中心化的、公共的分布式总账，参与到系统上的节点可能不属于统一组织，彼此互不信任，区块链数据由所有节点共同维护，每个参与维护的节点都能获得一份完整记录的拷贝。
+    </p>
+    <ul>
+        <li>交易：对账本状态的改变，如添加一条记录</li>
+        <li>区块：记录一段时间内发生的交易和状态，是对当前账本状态的一次共识</li>
+        <li>链：由一个个区块按照发生顺序串联而成，可视为状态变化的日记记录</li>
+    </ul>
 
-      <ul class="task-list">
-      <li class="task-list-item">
-      <input type="checkbox" class="task-list-item-checkbox" checked="" disabled=""> Create a sample markdown document</li>
-      <li class="task-list-item">
-      <input type="checkbox" class="task-list-item-checkbox" checked="" disabled=""> Add task lists to it</li>
-      <li class="task-list-item">
-      <input type="checkbox" class="task-list-item-checkbox" disabled=""> Take a vacation</li>
-      </ul>
+    <h2>基础框架</h2>
+    <ul>
+        <li>分布式数据库实现数据的分布式存储</li>
+        <li>P2P网络技术实现的动态组网</li>
+        <li>共识机制确保参与者数据的一致性</li>
+        <li>密码学中的数字签名和Hash算法等技术</li>
+        <li>经济博弈理论引导、规范理性参与者的行为</li>
+        <li>（非常重要：应用推动技术的发展，前五点都是技术）可自动触发、自动执行的智能合约</li>
+    </ul>
 
-      <p>And a "mixed" task list:</p>
+    <h2>核心特性</h2>
+    <ul>
+        <li>去中心化/多中心化：
+            <ul>
+                <li>分布式数据库是物理载体，区块链是逻辑载体，数据更新的去中心化是区块链去中心化/多中心化的本质。</li>
+            </ul>
+        </li>
+        <li>可信数据：不可伪造、不可篡改、不可否认、可溯源。
+            <ul>
+                <li>不可篡改（数据完整性）：数据库数据的不可篡改。</li>
+                <li>不可否认（抗抵赖性）：交易数据的完整性验证。</li>
+            </ul>
+        </li>
+        <li>智能合约
+            <ul>
+                <li>区块链：实现智能合约的有效技术，带来了一场智能革命。</li>
+            </ul>
+        </li>
+    </ul>
 
-      <ul class="task-list">
-      <li class="task-list-item">
-      <input type="checkbox" class="task-list-item-checkbox" disabled=""> Steal underpants</li>
-      <li>?</li>
-      <li class="task-list-item">
-      <input type="checkbox" class="task-list-item-checkbox" disabled=""> Profit!</li>
-      </ul>
+    <h2>基本属性以及分类</h2>
+    <p>
+        分布式、自治的、按照合约执行的、可追踪的
+    </p>
+    <p>
+        主流的分布式账本系统：基于DAG、公证人、区块链技术的分布式账本
+    </p>
 
-      <p>And a nested list:</p>
+    <h2>挑战方向</h2>
+    <p>
+        安全机制、隐私保护、分布式共识协议、可扩展性及性能效率
+    </p>
 
-      <ul class="task-list">
-      <li>Jackson 5
+    <hr>
 
-      <ul class="task-list">
-      <li>Michael</li>
-      <li>Tito</li>
-      <li>Jackie</li>
-      <li>Marlon</li>
-      <li>Jermaine</li>
-      </ul>
-      </li>
-      <li>TMNT
+    <h1>密码学基础：</h1>
 
-      <ul class="task-list">
-      <li>Leonardo</li>
-      <li>Michelangelo</li>
-      <li>Donatello</li>
-      <li>Raphael</li>
-      </ul>
-      </li>
-      </ul>
+    <h2>概述（考试范围）</h2>
+    <p>
+        引言：基础目标  Integrity/authenticity<br>
+        实现这两个目标的目标原语：Hash、Symmetric、Asymmetric等等...<br>
+        数学计算：<span id="mathjax">\(227^{5791293}\)</span>, 作业题、群论或循环群、素数生成算法（多项式时间生成指数级大小素数）<br>
+        密码学假设：离散对数假设，CDH、DDH假设（一定要知道）<br>
+        公钥加密：Syntax，有什么功能，保证什么事情、安全模型、大密钥空间元<br>
+        CPA、CCA的定义<br>
+        数字签名：和hash是最重要的，知道有什么算法、功能、安全保障<br>
+        hash：函数，安全性，抗碰撞、第二原相抗碰撞（混合加密稍微了解即可）<br>
+        Public Key Infrastructure（PKI）：公钥密码学有一个公钥和身份绑定的问题，基本原理有CA、数字签名、证书（掌握一下）比较online key distribution server与CA哪个更好？（公钥的CA确实比对称密码学的在线分发更是一种进步）
+    </p>
 
-      <p>Definition lists can be used with HTML syntax. Definition terms are bold and italic.</p>
+    <h2>Cryptography Introduction</h2>
+    <p>
+        <strong>每年基本会考，包括完整性和机密性：</strong>
+    </p>
+    <p>
+        密码学的基本目标：安全通信：在不安全的信道上要能够实现机密性（攻击者不能获取消息内容）、完整性（消息内容和消息来源不被篡改）
+    </p>
+    <p>
+        实现机密性和完整性的是密码学的基本原语(Primitives)，最基本的方案：
+    </p>
+    <ul>
+        <li>机密性：
+            <ul>
+                <li><strong>私钥/对称加密</strong>
+                    <p>
+                        收发双方使用相同的密钥，发送方加密信息后得到密文在不安全信道上传输，接收方使用相同的密钥解密得到明文。
+                    </p>
+                    <p>
+                        但是问题来了，对称密钥的问题是和不同的角色进行不同的密钥分发和建立，这样\(N\)个节点甚至有\(\frac{N(N-1)}{2}\)的网络。
+                    </p>
+                    <p>
+                        因此比较好的方法：使用中心化的密码管理服务器，这样就可以通过中心化的密码管理服务器来分发密钥。session key：会话密钥\(SeK\)，使用自己的密钥\(K_1/K_2\)和\(SeK\)进行加密后就可以获得对应的传输地址，然后就可以通过session key进行通讯。
+                    </p>
+                    <p>
+                        但是问题来了，中心化的服务（服务器坏了、失败了的鲁棒性）、系统里所有人的密钥都保存的问题（安全性泄漏）、服务器本身是否可信（可信性问题）
+                    </p>
+                    <p>
+                        因此提出了公钥密码学（是为了解决对称密码学的问题）
+                    </p>
+                </li>
+                <li><strong>公钥加密</strong>
+                    <p>
+                        每个人都有公钥和私钥\(p_k, s_k\)，任何人只要得到了对方的\(p_k\)，就可以对消息\(M\)进行加密得到\(C = Enc(M, p_k)\)后发送给对方，对方通过密钥\(s_k\)进行解密得到\(M = Dec(C, s_k)\)。
+                    </p>
+                    <p>
+                        公钥密码学解决了对称密钥分发的问题，但是引入了公钥和用户身份绑定的问题，因此需要PKI（Public Key Infrastructure）来解决这个问题。
+                    </p>
+                </li>
+            </ul>
+        </li>
+        <li>完整性：
+            <ul>
+                <li><strong>MAC（消息验证码）</strong>
+                    <p>
+                        收发双方共享密钥，发送方发送消息的时候使用\((M, t = MAC_K(M))\)，其中，\(t\)是使用密钥\(K\)采取MAC算法对\(M\)进行处理得到的字段\(t\)后，将\(M\)与\(t\)拼接在一起得到的内容。接收方接收到消息后取出\((M, t)\)后使用相同的密钥\(K\)计算MAC得到\(t'\)，如果\(t = t'\)则说明消息没有被篡改。
+                    </p>
+                    <p>
+                        <strong>要注意MAC算法并没有对明文进行处理！</strong>
+                    </p>
+                </li>
+                <li><strong>数字签名</strong>
+                    <p>
+                        每个人都有公私钥对，当你想要签名这个消息的时候，通过\(s_k\)对\(M\)进行签名得到\(S = Sign(M, s_k)\)，对方通过\(p_k\)对\(S\)进行验证，如果验证成功则说明签名有效。
+                    </p>
+                    <p>
+                        好处：公开可验证、可转移的、不可否认性（非常之重要）。
+                    </p>
+                    <p>
+                        <strong>为什么MAC可以否认？</strong>它由于发送双方知道相同的密钥，使用相同的密钥进行MAC处理，无法判定是谁的。
+                    </p>
+                    <p>
+                        哈希函数Hash function<strong>（只是密码原语工具）</strong>：哈希函数\(H:\{0,1\}^* \rightarrow \{0,1\}^n\)
+                    </p>
+                </li>
+            </ul>
+        </li>
+    </ul>
 
-      <dl>
-          <dt>Name</dt>
-          <dd>Godzilla</dd>
-          <dt>Born</dt>
-          <dd>1952</dd>
-          <dt>Birthplace</dt>
-          <dd>Japan</dd>
-          <dt>Color</dt>
-          <dd>Green</dd>
-      </dl>
+    <p>
+        这几个密码原语只能实现具体一个特性，例如只能实现机密性或者只能实现完整性。数字签名只能用私钥去签名，而不是用私钥去加密，注意，加密是可逆的操作，签名是不可逆的。
+    </p>
 
-      <hr>
+    <h2>公钥密码学</h2>
+    <ul>
+        <li>定义：
+            <ul>
+                <li>语法：函数和算法（功能性要求）</li>
+                <li>安全：威胁模型和安全保证</li>
+            </ul>
+        </li>
+        <li>用例：
+            <ul>
+                <li>构建：具体的算法</li>
+                <li>安全证明：某问题是困难的，那么它在这个构造方法下是安全模型</li>
+            </ul>
+        </li>
+    </ul>
+    <p>
+        所以公钥密码学是在数学基础上进行开展的，是零碎的基础的数字基础。
+    </p>
 
-      <p>Tables should have bold headings and alternating shaded rows.</p>
-
-      <table>
-      <thead>
-      <tr>
-      <th>Artist</th>
-      <th>Album</th>
-      <th>Year</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-      <td>Michael Jackson</td>
-      <td>Thriller</td>
-      <td>1982</td>
-      </tr>
-      <tr>
-      <td>Prince</td>
-      <td>Purple Rain</td>
-      <td>1984</td>
-      </tr>
-      <tr>
-      <td>Beastie Boys</td>
-      <td>License to Ill</td>
-      <td>1986</td>
-      </tr>
-      </tbody>
-      </table>
-
-      <p>If a table is too wide, it should condense down and/or scroll horizontally.</p>
-
-      <table>
-      <thead>
-      <tr>
-      <th>Artist</th>
-      <th>Album</th>
-      <th>Year</th>
-      <th>Label</th>
-      <th>Awards</th>
-      <th>Songs</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-      <td>Michael Jackson</td>
-      <td>Thriller</td>
-      <td>1982</td>
-      <td>Epic Records</td>
-      <td>Grammy Award for Album of the Year, American Music Award for Favorite Pop/Rock Album, American Music Award for Favorite Soul/R&amp;B Album, Brit Award for Best Selling Album, Grammy Award for Best Engineered Album, Non-Classical</td>
-      <td>Wanna Be Startin' Somethin', Baby Be Mine, The Girl Is Mine, Thriller, Beat It, Billie Jean, Human Nature, P.Y.T. (Pretty Young Thing), The Lady in My Life</td>
-      </tr>
-      <tr>
-      <td>Prince</td>
-      <td>Purple Rain</td>
-      <td>1984</td>
-      <td>Warner Brothers Records</td>
-      <td>Grammy Award for Best Score Soundtrack for Visual Media, American Music Award for Favorite Pop/Rock Album, American Music Award for Favorite Soul/R&amp;B Album, Brit Award for Best Soundtrack/Cast Recording, Grammy Award for Best Rock Performance by a Duo or Group with Vocal</td>
-      <td>Let's Go Crazy, Take Me With U, The Beautiful Ones, Computer Blue, Darling Nikki, When Doves Cry, I Would Die 4 U, Baby I'm a Star, Purple Rain</td>
-      </tr>
-      <tr>
-      <td>Beastie Boys</td>
-      <td>License to Ill</td>
-      <td>1986</td>
-      <td>Mercury Records</td>
-      <td>noawardsbutthistablecelliswide</td>
-      <td>Rhymin &amp; Stealin, The New Style, She's Crafty, Posse in Effect, Slow Ride, Girls, (You Gotta) Fight for Your Right, No Sleep Till Brooklyn, Paul Revere, Hold It Now, Hit It, Brass Monkey, Slow and Low, Time to Get Ill</td>
-      </tr>
-      </tbody>
-      </table>
-
-      <hr>
-
-      <p>Code snippets like <code>var foo = "bar";</code> can be shown inline.</p>
-
-      <p>Also, <code>this should vertically align</code> <del><code>with this</code></del> <del>and this</del>.</p>
-
-      <p>Code can also be shown in a block element.</p>
-
-      <pre><code>var foo = "bar";
-</code></pre>
-
-      <p>Code can also use syntax highlighting.</p>
-
-      <div class="highlight highlight-Javascript"><pre><span class="pl-k">var</span> foo <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>;</pre></div>
-
-      <pre><code>Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.</code></pre>
-
-      <div class="highlight highlight-Javascript"><pre><span class="pl-k">var</span> foo <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>The same thing is true for code with syntax highlighting. A single line of code should horizontally scroll if it is really long.<span class="pl-pds">"</span></span>;</pre></div>
-
-      <p>Inline code inside table cells should still be distinguishable.</p>
-
-      <table>
-      <thead>
-      <tr>
-      <th>Language</th>
-      <th>Code</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-      <td>Javascript</td>
-      <td><code>var foo = "bar";</code></td>
-      </tr>
-      <tr>
-      <td>Ruby</td>
-      <td><code>foo = "bar"</code></td>
-      </tr>
-      </tbody>
-      </table>
-
-      <hr>
-
-      <p>Small images should be shown at their actual size.</p>
-
-      <p><a href="https://camo.githubusercontent.com/16a9d5241f679b6429fc0597f10816dd2665bbb2/687474703a2f2f706c6163656b697474656e2e636f6d2f672f3330302f3230302f" target="_blank"><img src="https://camo.githubusercontent.com/16a9d5241f679b6429fc0597f10816dd2665bbb2/687474703a2f2f706c6163656b697474656e2e636f6d2f672f3330302f3230302f" alt="" data-canonical-src="https://placekitten.com/g/300/200/" style="max-width:100%;"></a></p>
-
-      <p>Large images should always scale down and fit in the content container.</p>
-
-      <p><a href="https://camo.githubusercontent.com/afe46418285497605cf4f6376b75f8c818658fb1/687474703a2f2f706c6163656b697474656e2e636f6d2f672f313230302f3830302f" target="_blank"><img src="https://camo.githubusercontent.com/afe46418285497605cf4f6376b75f8c818658fb1/687474703a2f2f706c6163656b697474656e2e636f6d2f672f313230302f3830302f" alt="" data-canonical-src="https://placekitten.com/g/1200/800/" style="max-width:100%;"></a></p>
-
-      <pre><code>This is the final element on the page and there should be no margin below this.</code></pre>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/jasonlong/cayman-theme">Cayman</a> is maintained by <a href="https://github.com/jasonlong">jasonlong</a>.</span>
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
-      </footer>
+    <h3>Number Theory</h3>
+    <ul>
+        <li>定义整除divisors：\((b\neq 0), b|a\implies \exists m\in N, a = mb\)，传递性、交换性、单位性</li>
+        <li>定义同余congruence：\(a\equiv b(\bmod m)\implies m|(a-b)\)、自反性、交换性、传递性</li>
+        <li>定义模约运算modular reduction：\(a\bmod m = a - m\lfloor \frac{a}{m} \rfloor = r(a=qm+r, 0\leq r< m) \)，模约运算可以在式子的任何地方进行操作，可以拆分。</li>
+        <li>合数和素数composite and prime：素数分解定理：任何一个大于1的整数都可以分解成素数的乘积，而且这个分解是唯一的：\(a=p_1^{\alpha_1}p_2^{\alpha_2}...p_t^{\alpha_t}(p_1>p_2>...>p_t), 12250=7^2*5^3*2^1\)，这个分解是唯一的。</li>
+        <li>最大公因数GCD\(gcd(a,b) = gcd(b, a\% b)\)</li>
+        <li>模逆modular inverse：\(AB\bmod n = 1\implies A^{-1}\bmod n = B\)，需要注意，要存在模逆的前提是\(B\)和\(n\)互素。</li>
+        <li>找逆元可以考虑采取欧拉分解法，其中每次都进行对应的代换，其中每个代换都是前面一项的余数，代回来就可以求解逆元，可参照（3 区块链密码学基础.pdf）中的求911mod999的逆元的例子。</li>
+        <li>欧拉\(\phi\)函数：\(\phi(n) = |\{a\in Z_n^*|gcd(a,n)=1\}|\)，其中\(Z_n^*\)是模\(n\)的乘法群，\(\phi(n)\)是\(n\)的互素的个数。并且该函数是可以累积乘的\(gcd(m,n) = 1\implies \phi(mn)=\phi(m)\phi(n)\)，其次对于质数\(p\)而言：\(\phi(e^p) = p^{e-1}(p-1)\)。最后\(\phi(n)=n(1-1/p_1)(1-1/p_2)...(1-1/p_k)\)</li>
+        <li>费马小定理：质数\(p\)，任何一个不被\(p\)整除的\(a\)均满足\(a^{p-1}\equiv 1(\bmod p)\)因此如果\(a,n\)互素，那么\(a^k\bmod n = a^{k\mod \phi(n)}\bmod n\)</li>
+        <li>平方乘算法：计算\(11^{15} = 11^1*11^2*11^4*11^8\)</li>
+    </ul> -->
 
     </section>
 
