@@ -11,13 +11,11 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
     <style>
-        #pdf-render {
-            border: 1px solid #000;
-            width: 100%;
-            height: 600px;
-        }
+      #pdf-container {
+        width: 100%;
+        height: 600px;
+      }
     </style>
   </head>
   <body>
@@ -31,86 +29,29 @@
 
       <canvas id="pdf-render"></canvas>
 
-    <script>
-        const url = 'static/pdfs/lec1.pdf';
-
-        let pdfDoc = null,
-            pageNum = 1,
-            pageIsRendering = false,
-            pageNumIsPending = null;
-
-        const scale = 1.5,
-              canvas = document.querySelector('#pdf-render'),
-              ctx = canvas.getContext('2d');
-
-        // Render the page
-        const renderPage = num => {
-            pageIsRendering = true;
-
-            // Get page
-            pdfDoc.getPage(num).then(page => {
-                const viewport = page.getViewport({ scale });
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-
-                const renderCtx = {
-                    canvasContext: ctx,
-                    viewport
-                };
-
-                page.render(renderCtx).promise.then(() => {
-                    pageIsRendering = false;
-
-                    if (pageNumIsPending !== null) {
-                        renderPage(pageNumIsPending);
-                        pageNumIsPending = null;
-                    }
-                });
-
-                document.querySelector('#page-num').textContent = num;
+      <script src="pdf.js"></script>
+      <script src="pdf.worker.js"></script>
+      <script>
+        var pdfContainer = document.getElementById('pdf-container');
+    
+        // 使用PDF.js库加载和渲染PDF文件
+        pdfjsLib.getDocument('static/pdfs/lec1.pdf').then(function(pdf) {
+          for (var i = 1; i <= pdf.numPages; i++) {
+            pdf.getPage(i).then(function(page) {
+              var canvas = document.createElement('canvas');
+              var context = canvas.getContext('2d');
+              canvas.width = pdfContainer.offsetWidth;
+              canvas.height = pdfContainer.offsetHeight;
+              pdfContainer.appendChild(canvas);
+    
+              page.render({
+                canvasContext: context,
+                viewport: page.getViewport({ scale: 1 })
+              });
             });
-        };
-
-        // Get Document
-        pdfjsLib.getDocument(url).promise.then(pdfDoc_ => {
-            pdfDoc = pdfDoc_;
-
-            document.querySelector('#page-count').textContent = pdfDoc.numPages;
-
-            renderPage(pageNum);
+          }
         });
-
-        // Check for pages rendering
-        const queueRenderPage = num => {
-            if (pageIsRendering) {
-                pageNumIsPending = num;
-            } else {
-                renderPage(num);
-            }
-        };
-
-        // Show Prev Page
-        const showPrevPage = () => {
-            if (pageNum <= 1) {
-                return;
-            }
-            pageNum--;
-            queueRenderPage(pageNum);
-        };
-
-        // Show Next Page
-        const showNextPage = () => {
-            if (pageNum >= pdfDoc.numPages) {
-                return;
-            }
-            pageNum++;
-            queueRenderPage(pageNum);
-        };
-
-        // Button Events
-        document.querySelector('#prev-page').addEventListener('click', showPrevPage);
-        document.querySelector('#next-page').addEventListener('click', showNextPage);
-    </script>
+      </script>
 
       <!-- <h1>课程介绍：</h1>
 
